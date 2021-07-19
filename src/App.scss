@@ -1,0 +1,58 @@
+/* Other rules */
+
+/* Global rules */
+.contain {
+  max-width: 1250px;
+  margin: 0 auto;
+}
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 120px;
+  img {
+    width: 120px;
+  }
+}
+
+/* Home */
+
+.home {
+  img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+  }
+  .headHome {
+    position: relative;
+    .headSell {
+      width: 410px;
+      height: 270px;
+      background-color: white;
+      position: absolute;
+      top: 90px;
+      left: 70px;
+    }
+  }
+  .articles {
+    display: flex;
+    flex-wrap: wrap;
+    .article {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 10px 0 0;
+      img {
+        width: 240px;
+        height: 360px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+.test {
+  width: 150px;
+  height: 150px;
+  background-color: aquamarine;
+}
