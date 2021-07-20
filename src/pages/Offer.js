@@ -10,8 +10,8 @@ const Offer = (props) => {
     }
   }
   return (
-    <div className="test">
-      <img src={article.product_image.url} alt="" />
+    <div className="contentOffer">
+      <img src={article.product_image.url} alt={article.product_description} />
     </div>
   );
 };

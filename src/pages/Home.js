@@ -1,13 +1,31 @@
-import imgFond from "../images/fond_header.jpg";
+import imgFondCrashed from "../images/fond_img_head.svg";
 import { Link } from "react-router-dom";
 
 const Home = (props) => {
   const { data } = props;
 
+  const detailsArticle = (offer, detail) => {
+    for (let i = 0; i < offer.length; i++) {
+      if (offer[i][detail]) {
+        return offer[i][detail];
+      }
+    }
+  };
+
+  const intlFormat = (num) => {
+    return Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+    }).format(num);
+  };
+
   return (
     <div className="home">
       <div className="headHome">
-        <img src={imgFond} alt="femme présentant une robe" />
+        <div className="pictureBack">
+          <img className="test" src={imgFondCrashed} alt="" />
+        </div>
+
         <div className="headSell">
           <h2>Prêts à faire du tri dans vos placards ?</h2>
           <button>Commencer à vendre</button>
@@ -23,9 +41,9 @@ const Home = (props) => {
                   src={elem.product_image.secure_url}
                   alt={elem.product_description}
                 />
-                <span>{elem.product_price} </span>
-                <span>{}</span>
-                <span>{}</span>
+                <span>{intlFormat(elem.product_price)} </span>
+                <span>{detailsArticle(elem.product_details, "MARQUE")}</span>
+                <span>{detailsArticle(elem.product_details, "TAILLE")}</span>
               </div>
             </Link>
           );

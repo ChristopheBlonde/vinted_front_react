@@ -1,41 +1,112 @@
-/* Other rules */
-
+/* Variables */
+$color-vinted-green: #09b0ba;
+$fontMaison: "Maison Neue";
 /* Global rules */
+body {
+  font-family: $fontMaison;
+}
+
 .contain {
   max-width: 1250px;
   margin: 0 auto;
+}
+h2 {
+  font-size: 34px;
+}
+a {
+  color: black;
+  text-decoration: none;
 }
 /* Header */
 
 header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 120px;
   img {
     width: 120px;
+  }
+  .searchLabel {
+    position: relative;
+    .searchIcon {
+      position: absolute;
+      left: 5px;
+      top: 0px;
+      color: #999999;
+    }
+    input {
+      width: 40vw;
+      padding: 10px 25px;
+      background-color: #f5f6f7;
+      border: none;
+      outline: none;
+      font-family: $fontMaison;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+  }
+  button {
+    width: 110px;
+    height: 30px;
+    border: solid 2px $color-vinted-green;
+    border-radius: 10px;
+    background-color: #fff;
+    color: $color-vinted-green;
+    padding: 5px;
+    font-size: 12px;
+  }
+  button:not(:last-child) {
+    margin-right: 20px;
+  }
+  button:last-child {
+    color: white;
+    background-color: $color-vinted-green;
+    margin-left: 20px;
   }
 }
 
 /* Home */
 
 .home {
-  img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-  }
   .headHome {
     position: relative;
     .headSell {
-      width: 410px;
-      height: 270px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      width: 25vw;
+      height: 250px;
       background-color: white;
+      border-radius: 5px;
+      padding: 25px;
       position: absolute;
       top: 90px;
       left: 70px;
     }
+    button {
+      height: 45px;
+      width: 185px;
+      background-color: $color-vinted-green;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    .pictureBack {
+      width: 98%;
+      height: 500px;
+      background-position: center;
+      background-size: cover;
+      background-image: url("./images/fond_header.jpg");
+      position: relative;
+      img {
+        position: absolute;
+        bottom: -2px;
+      }
+    }
   }
+
   .articles {
     display: flex;
     flex-wrap: wrap;
@@ -51,8 +122,16 @@ header {
     }
   }
 }
-.test {
-  width: 150px;
-  height: 150px;
-  background-color: aquamarine;
+
+/* Media queries */
+
+@media (max-width: 1024px) {
+  nav {
+    button:not(:last-child) {
+      margin-right: 10px;
+    }
+    button:last-child {
+      margin-left: 0px;
+    }
+  }
 }

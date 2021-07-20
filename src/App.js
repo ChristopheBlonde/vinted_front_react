@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch);
 
 function App() {
   const [data, setData] = useState({});
