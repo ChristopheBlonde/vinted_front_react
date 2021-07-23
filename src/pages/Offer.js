@@ -8,6 +8,7 @@ const Offer = () => {
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
+  /* fetch data */
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
@@ -19,28 +20,16 @@ const Offer = () => {
     fetchData();
   }, [id]);
 
+  /* Function for price format */
   const intlFormat = (num) => {
     return Intl.NumberFormat("fr-FR", {
       style: "currency",
       currency: "EUR",
     }).format(num);
   };
-  const detailsArticle = (offer, detail) => {
-    for (let i = 0; i < offer.length; i++) {
-      if (offer[i][detail]) {
-        return offer[i][detail];
-      }
-    }
-  };
-  const detailsArticleKeys = (offer, detail) => {
-    for (let i = 0; i < offer.length; i++) {
-      const object = offer[i];
-      const key = Object.keys(object);
-      if (key[0] === detail) {
-        return key[0];
-      }
-    }
-  };
+
+  /* Variable for details*/
+  const offerDetails = article.product_details;
 
   return isLoading ? (
     <div>Chargement en cours...</div>
@@ -50,40 +39,47 @@ const Offer = () => {
         <div className="col-1">
           <img
             src={article.product_image.secure_url}
-            alt={article.product_description}
+            alt={article.product_name}
           />
         </div>
         <div className="col-2">
-          <span className="priceArticle">
-            {intlFormat(article.product_price)}
-          </span>
           <div className="offerDetails">
-            <div className="offerDetailsName">
-              <span>
-                {detailsArticleKeys(article.product_details, "MARQUE")}
-              </span>
-              <span>
-                {detailsArticleKeys(article.product_details, "TAILLE")}
-              </span>
-              <span>{detailsArticleKeys(article.product_details, "ETAT")}</span>
-              <span>
-                {detailsArticleKeys(article.product_details, "COULEUR")}
-              </span>
-              <span>
-                {detailsArticleKeys(article.product_details, "EMPLACEMENT")}
-              </span>
-            </div>
-            <div className="offerDetailsArticle">
-              <span>{detailsArticle(article.product_details, "MARQUE")}</span>
-              <span>{detailsArticle(article.product_details, "TAILLE")}</span>
-              <span>{detailsArticle(article.product_details, "ETAT")}</span>
-              <span>{detailsArticle(article.product_details, "COULEUR")}</span>
-              <span>
-                {detailsArticle(article.product_details, "EMPLACEMENT")}
-              </span>
-            </div>
+            <span className="priceArticle">
+              {intlFormat(article.product_price)}
+            </span>
+            {offerDetails.map((detail, index) => {
+              const keys = Object.keys(detail);
+              return (
+                <li key={index}>
+                  <div>{keys[0]}</div>
+                  <div>{detail[keys[0]]}</div>
+                </li>
+              );
+            })}
           </div>
-          <div className="byIt"></div>
+          <div className="byIt">
+            <div>
+              <h2>{article.product_name}</h2>
+              {offerDetails.map((element, index) => {
+                const keys = Object.keys(element);
+                let result;
+                if (keys[0] === "ETAT") {
+                  result = element[keys[0]];
+                }
+                return <p key={index}> {result}</p>;
+              })}
+
+              {article.owner.account.avatar ? (
+                <div className="author">
+                  <div className="avatar">{article.owner.account.avatar}</div>
+                  {article.owner.account.username}
+                </div>
+              ) : (
+                <div className="author">{article.owner.account.username}</div>
+              )}
+            </div>
+            <button>Acheter</button>
+          </div>
         </div>
       </div>
     </div>
