@@ -1,13 +1,19 @@
 /* Variables */
+
 $color-vinted-green: #09b0ba;
+$color-grey-white: #f5f6f7;
+$color-greyLight: #bababa;
+$color-greyDark: #999999;
+$color-background-offer: #eaedee;
 $fontMaison: "Maison Neue";
 /* Global rules */
+
 body {
   font-family: $fontMaison;
 }
 
 .contain {
-  max-width: 1250px;
+  max-width: 1350px;
   margin: 0 auto;
 }
 h2 {
@@ -33,12 +39,12 @@ header {
       position: absolute;
       left: 5px;
       top: 0px;
-      color: #999999;
+      color: $color-greyDark;
     }
     input {
       width: 40vw;
       padding: 10px 25px;
-      background-color: #f5f6f7;
+      background-color: $color-grey-white;
       border: none;
       outline: none;
       font-family: $fontMaison;
@@ -110,6 +116,7 @@ header {
   .articles {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     .article {
       display: flex;
       flex-direction: column;
@@ -118,6 +125,43 @@ header {
         width: 240px;
         height: 360px;
         object-fit: cover;
+      }
+      .detail {
+        color: $color-greyLight;
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+  }
+}
+
+/* offer */
+.contentOffer {
+  height: 100vw;
+  background-color: $color-background-offer;
+  .offer {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 60px;
+    .col-2 {
+      display: flex;
+      flex-direction: column;
+      width: 320px;
+      padding: 40px;
+      background-color: white;
+      .priceArticle {
+        font-size: 24px;
+        margin-bottom: 30px;
+      }
+      .offerDetails {
+        display: flex;
+        justify-content: space-between;
+        .offerDetailsName,
+        .offerDetailsArticle {
+          line-height: 20px;
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }
