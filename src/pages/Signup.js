@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Sign_up = () => {
   const [name, setName] = useState("");
@@ -8,6 +10,7 @@ const Sign_up = () => {
   const [password, setPassword] = useState("");
   const [checkBox, setCheckBox] = useState(false);
   const [phone, setPhone] = useState("");
+  const [hiddenPass, setHiddenPass] = useState(true);
 
   const handleName = (event) => {
     const value = event.target.value;
@@ -38,20 +41,39 @@ const Sign_up = () => {
     }
   };
 
+  /* Hide password function */
+  let hidden = "eye";
+  let inputType = "password";
+  hiddenPass ? (hidden = "eye") : (hidden = "eye-slash");
+  hiddenPass ? (inputType = "password") : (inputType = "text");
+  const handlehiddenPassword = () => {
+    if (hiddenPass) {
+      return setHiddenPass(false);
+    } else {
+      return setHiddenPass(true);
+    }
+  };
+
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
       const result = {};
-      if (name && email && password && checkBox) {
+      let response;
+      if (name && email && password && (checkBox || !checkBox) && phone) {
         result.username = name;
         result.email = email;
         result.password = password;
-        console.log(result);
-        const response = await axios.post(
-          "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        result.phone = phone;
+        result.checkBox = checkBox;
+        response = await axios.post(
+          "https://vinted-api-chris.herokuapp.com/user/signup",
           result
         );
-        return console.log(response);
+        const token = response.data.token;
+        Cookies.set("token", { token: token }, { expires: 1 });
+        return alert(
+          `Merci ${result.username} votre compte a bien était créé.`
+        );
       }
     } catch (error) {
       console.log(error.message);
@@ -59,7 +81,7 @@ const Sign_up = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="modal" onSubmit={handleSubmit}>
       <h2>S'inscrire</h2>
       <label htmlFor="username">
         <input
@@ -76,7 +98,6 @@ const Sign_up = () => {
           onChange={handlePhone}
           value={phone}
           type="tel"
-          // pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
           required
         />
       </label>
@@ -89,18 +110,26 @@ const Sign_up = () => {
           required
         />
       </label>
-      <label htmlFor="password">
+      <label htmlFor="password" className="inputPassword">
         <input
           placeholder="Password"
           onChange={handlePassword}
           value={password}
-          type="password"
+          type={inputType}
           required
+        />
+        <FontAwesomeIcon
+          className="iconPassword"
+          onClick={handlehiddenPassword}
+          icon={hidden}
         />
       </label>
       <div className="newLetter">
-        <input onChange={handleCheckBox} type="checkbox" checked={checkBox} />
-        <h3>S'inscrire à notre newsletter</h3>
+        <div className="title">
+          <input onChange={handleCheckBox} type="checkbox" checked={checkBox} />
+          <h3>S'inscrire à notre newsletter</h3>
+        </div>
+
         <p>
           En m'inscrivant, je confirme que j'ai accepté les Termes & Conditions
           de Vinted, avoir lu la Politique de Confidentialité, et que j'ai plus

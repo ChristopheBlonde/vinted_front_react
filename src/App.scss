@@ -216,6 +216,77 @@ header {
     }
   }
 }
+/* Signup modal */
+.modal {
+  width: 380px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 48px;
+  }
+  label {
+    width: 100%;
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 20px 0;
+      padding: 10px;
+      border: none;
+      background-color: white;
+      border-bottom: solid 1px $color-greyDark;
+      font-size: 18px;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+  .newLetter {
+    display: flex;
+    flex-direction: column;
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      margin: 20px 0;
+      input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+      input:after {
+        background-color: $color-vinted-green;
+      }
+    }
+    p {
+      margin-bottom: 20px;
+    }
+  }
+  button {
+    width: 100%;
+    color: white;
+    background-color: $color-vinted-green;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  a {
+    color: $color-vinted-green;
+    text-align: center;
+  }
+  .inputPassword {
+    position: relative;
+    .iconPassword {
+      position: absolute;
+      right: 5px;
+      bottom: 30px;
+    }
+  }
+}
 
 /* Media queries */
 

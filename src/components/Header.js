@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="contain">
-      <img src={logo} alt="logo vinted" />
+      <Link to="/">
+        <img src={logo} alt="logo vinted" />{" "}
+      </Link>
       <div className="containSearch">
         <label className="searchLabel" htmlFor="search">
           <FontAwesomeIcon className="searchIcon" icon="search" />

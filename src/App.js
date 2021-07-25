@@ -6,8 +6,8 @@ import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch);
+import { faEye, faEyeSlash, faSearch } from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faEye, faEyeSlash);
 
 function App() {
   return (
