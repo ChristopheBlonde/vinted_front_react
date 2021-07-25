@@ -54,7 +54,7 @@ const Login = () => {
           value={email}
           onChange={handleUserName}
           type="text"
-          placeholder="Nom d'utilisateur"
+          placeholder="Adresse mail"
         />
       </label>
       <label htmlFor="password" className="inputPassword">
