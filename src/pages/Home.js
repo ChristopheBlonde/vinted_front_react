@@ -31,6 +31,7 @@ const Home = () => {
       currency: "EUR",
     }).format(num);
   };
+
   return isLoading ? (
     <div>Chargement en cours...</div>
   ) : (

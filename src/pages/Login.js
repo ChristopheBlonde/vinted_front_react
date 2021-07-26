@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import reactDom from "react-dom";
 
-const Login = () => {
+const Login = (props) => {
+  const { isShowing, setIsShowing, isShowingIndex } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
@@ -24,11 +25,7 @@ const Login = () => {
   hiddenPass ? (hidden = "eye") : (hidden = "eye-slash");
   hiddenPass ? (inputType = "password") : (inputType = "text");
   const handlehiddenPassword = () => {
-    if (hiddenPass) {
-      return setHiddenPass(false);
-    } else {
-      return setHiddenPass(true);
-    }
+    setHiddenPass(!hiddenPass);
   };
 
   const handleSubmit = async (event) => {
@@ -46,35 +43,48 @@ const Login = () => {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="modal">
-      <h2>Se Connecter</h2>
-      <label htmlFor="username">
-        <input
-          value={email}
-          onChange={handleUserName}
-          type="text"
-          placeholder="Adresse mail"
-        />
-      </label>
-      <label htmlFor="password" className="inputPassword">
-        <input
-          value={password}
-          onChange={handlePassword}
-          type={inputType}
-          placeholder="Mot de passe"
-        />
-        <FontAwesomeIcon
-          className="iconPassword"
-          onClick={handlehiddenPassword}
-          icon={hidden}
-        />
-      </label>
-      <button type="submit">Se connecter</button>
-      <Link to="/user/signup">
-        <p>Pas encore de compte ? Inscris-toi !</p>
-      </Link>
-    </form>
-  );
+  const newShowing = [...isShowing];
+  const handleLinkLogin = () => {
+    newShowing[0] = !newShowing[0];
+    newShowing[1] = !newShowing[1];
+    setIsShowing(newShowing);
+  };
+
+  return isShowingIndex
+    ? reactDom.createPortal(
+        <div className="containModal">
+          <form onSubmit={handleSubmit} className="modal">
+            <h2>Se Connecter</h2>
+            <label htmlFor="username">
+              <input
+                value={email}
+                onChange={handleUserName}
+                type="text"
+                placeholder="Adresse mail"
+              />
+            </label>
+            <label htmlFor="password" className="inputPassword">
+              <input
+                value={password}
+                onChange={handlePassword}
+                type={inputType}
+                placeholder="Mot de passe"
+              />
+              <FontAwesomeIcon
+                className="iconPassword"
+                onClick={handlehiddenPassword}
+                icon={hidden}
+              />
+            </label>
+            <button type="submit">Se connecter</button>
+
+            <p className="toggleLoginSignup" onClick={handleLinkLogin}>
+              Pas encore de compte ? Inscris-toi !
+            </p>
+          </form>
+        </div>,
+        document.body
+      )
+    : null;
 };
 export default Login;
