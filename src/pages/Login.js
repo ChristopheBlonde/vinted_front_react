@@ -12,6 +12,7 @@ const Login = (props) => {
 
   const closeAllModal = () => {
     const closeModals = [false, false];
+    document.body.style.overflow = "auto";
     setIsShowing(closeModals);
   };
 
@@ -50,6 +51,7 @@ const Login = (props) => {
       });
       console.log(Cookies.get("tokenLogin"));
       setToken(token);
+      closeAllModal();
 
       return alert(`Bienvenue ${userLogin}`);
     }

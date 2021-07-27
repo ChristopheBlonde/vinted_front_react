@@ -94,6 +94,7 @@ const Signup = (props) => {
 
   const closeAllModal = () => {
     const closeModals = [false, false];
+    document.body.style.overflow = "auto";
     setIsShowing(closeModals);
   };
 
