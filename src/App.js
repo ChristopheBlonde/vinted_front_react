@@ -4,8 +4,13 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faEye, faEyeSlash, faSearch } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch, faEye, faEyeSlash);
+import {
+  faEye,
+  faEyeSlash,
+  faSearch,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(faSearch, faEye, faEyeSlash, faTimes);
 
 function App() {
   return (

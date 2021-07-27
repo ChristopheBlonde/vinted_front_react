@@ -12,6 +12,7 @@ const Signup = (props) => {
   const [checkBox, setCheckBox] = useState(false);
   const [phone, setPhone] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
+
   const handleName = (event) => {
     const value = event.target.value;
     setName(value);
@@ -71,6 +72,7 @@ const Signup = (props) => {
         );
         const token = response.data.token;
         Cookies.set("token", { token: token }, { expires: 1 });
+        handleLinkLogin();
         return alert(
           `Merci ${result.username} votre compte a bien était créé.`
         );
@@ -79,16 +81,29 @@ const Signup = (props) => {
       console.log(error.message);
     }
   };
+
+  /* Pass on login modal*/
   const newShowing = [...isShowing];
   const handleLinkLogin = () => {
     newShowing[0] = !newShowing[0];
     newShowing[1] = !newShowing[1];
-    setIsShowing(newShowing);
+    return setIsShowing(newShowing);
   };
+
+  /* close Modal */
+
+  const closeAllModal = () => {
+    const closeModals = [false, false];
+    setIsShowing(closeModals);
+  };
+
   return isShowingIndex
     ? reactDom.createPortal(
         <div className="containModal">
           <form className="modal" onSubmit={handleSubmit}>
+            <div className="iconCloseModal">
+              <FontAwesomeIcon onClick={closeAllModal} icon="times" />
+            </div>
             <h2>S'inscrire</h2>
             <label htmlFor="username">
               <input

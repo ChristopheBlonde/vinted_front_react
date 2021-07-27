@@ -2,12 +2,18 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import reactDom from "react-dom";
+import Cookies from "js-cookie";
 
 const Login = (props) => {
-  const { isShowing, setIsShowing, isShowingIndex } = props;
+  const { isShowing, setIsShowing, isShowingIndex, setToken } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
+
+  const closeAllModal = () => {
+    const closeModals = [false, false];
+    setIsShowing(closeModals);
+  };
 
   const handleUserName = (event) => {
     const value = event.target.value;
@@ -39,6 +45,12 @@ const Login = (props) => {
         login
       );
       const userLogin = response.data.account.username;
+      const token = Cookies.set("tokenLogin", response.data.token, {
+        expires: 7,
+      });
+      console.log(Cookies.get("tokenLogin"));
+      setToken(token);
+
       return alert(`Bienvenue ${userLogin}`);
     }
   };
@@ -54,6 +66,10 @@ const Login = (props) => {
     ? reactDom.createPortal(
         <div className="containModal">
           <form onSubmit={handleSubmit} className="modal">
+            <div className="iconCloseModal">
+              <FontAwesomeIcon onClick={closeAllModal} icon="times" />
+            </div>
+
             <h2>Se Connecter</h2>
             <label htmlFor="username">
               <input
