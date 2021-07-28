@@ -72,7 +72,7 @@ const Signup = (props) => {
         );
         const token = response.data.token;
         Cookies.set("token", { token: token }, { expires: 1 });
-        handleLinkLogin();
+        toggleLoginSignup();
         return alert(
           `Merci ${result.username} votre compte a bien était créé.`
         );
@@ -84,7 +84,7 @@ const Signup = (props) => {
 
   /* Pass on login modal*/
   const newShowing = [...isShowing];
-  const handleLinkLogin = () => {
+  const toggleLoginSignup = () => {
     newShowing[0] = !newShowing[0];
     newShowing[1] = !newShowing[1];
     return setIsShowing(newShowing);
@@ -163,7 +163,7 @@ const Signup = (props) => {
                 et que j'ai plus de 18 ans.
               </p>
               <button type="submit">S'inscrire</button>
-              <p className="toggleLoginSignup" onClick={handleLinkLogin}>
+              <p className="toggleLoginSignup" onClick={toggleLoginSignup}>
                 Tu as déjà un compte ? Connecte-toi !
               </p>
             </div>

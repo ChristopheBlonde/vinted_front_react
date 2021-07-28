@@ -1,21 +1,39 @@
 import imgFondCrashed from "../images/fond_img_head.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import * as qs from "qs";
 
-const Home = () => {
+const Home = (props) => {
+  const { title, toggleSwitch } = props;
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  console.log(title);
+
+  const location = useLocation();
+  const params = qs.parse(location.search.substring(1));
+  const page = params.page;
+  const limit = params.limit;
+  const priceMax = params.priceMax;
+  const priceMin = params.priceMin;
+  let sort;
+  if (toggleSwitch) {
+    sort = "price-desc";
+  } else {
+    sort = "price-asc";
+  }
 
   const fetchData = async () => {
-    const res = await axios.get("https://vinted-api-chris.herokuapp.com/offer");
+    const res = await axios.get(
+      `https://vinted-api-chris.herokuapp.com/offer?page=${page}&limit=${limit}&title=${title}&sort=${sort}`
+    );
     setData(res.data);
     setIsLoading(false);
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [title, toggleSwitch]);
 
   const detailsArticle = (offer, detail) => {
     for (let i = 0; i < offer.length; i++) {

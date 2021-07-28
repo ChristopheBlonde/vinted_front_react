@@ -7,9 +7,21 @@ import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Cookies from "js-cookie";
 
-const Header = () => {
+const Header = (props) => {
+  const { search, setSearch, toggleSwitch, setToggleSwitch } = props;
   const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
   const [isShowing, setIsShowing] = useState([false, false]);
+
+  const handleChangeSearch = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleChangeToggleSwitch = () => {
+    const toggle = !toggleSwitch;
+    setToggleSwitch(toggle);
+  };
+
+  /* Modals showed */
   const newArr = [...isShowing];
   const toggle = (index) => {
     if (index === 0) {
@@ -43,8 +55,25 @@ const Header = () => {
       <div className="containSearch">
         <label className="searchLabel" htmlFor="search">
           <FontAwesomeIcon className="searchIcon" icon="search" />
-          <input type="text" placeholder="Rechercher des articles" />
+          <input
+            type="text"
+            value={search}
+            onChange={handleChangeSearch}
+            placeholder="Rechercher des articles"
+          />
         </label>
+        <div className="priceChois">
+          <span>Trier par prix :</span>
+          <label className="switch" htmlFor="switch">
+            <input
+              id="switch"
+              checked={toggleSwitch}
+              onChange={handleChangeToggleSwitch}
+              type="checkbox"
+            />
+            <div className="slider"></div>
+          </label>
+        </div>
       </div>
       <nav>
         {token ? (

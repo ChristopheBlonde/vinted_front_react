@@ -6,15 +6,10 @@ import Cookies from "js-cookie";
 
 const Login = (props) => {
   const { isShowing, setIsShowing, isShowingIndex, setToken } = props;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
-
-  const closeAllModal = () => {
-    const closeModals = [false, false];
-    document.body.style.overflow = "auto";
-    setIsShowing(closeModals);
-  };
 
   const handleUserName = (event) => {
     const value = event.target.value;
@@ -34,6 +29,8 @@ const Login = (props) => {
   const handlehiddenPassword = () => {
     setHiddenPass(!hiddenPass);
   };
+
+  /* Submit request */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,12 +53,19 @@ const Login = (props) => {
       return alert(`Bienvenue ${userLogin}`);
     }
   };
+  /* Modal */
 
   const newShowing = [...isShowing];
-  const handleLinkLogin = () => {
+  const toggleLoginSignup = () => {
     newShowing[0] = !newShowing[0];
     newShowing[1] = !newShowing[1];
     setIsShowing(newShowing);
+  };
+
+  const closeAllModal = () => {
+    const closeModals = [false, false];
+    document.body.style.overflow = "auto";
+    setIsShowing(closeModals);
   };
 
   return isShowingIndex
@@ -96,7 +100,7 @@ const Login = (props) => {
             </label>
             <button type="submit">Se connecter</button>
 
-            <p className="toggleLoginSignup" onClick={handleLinkLogin}>
+            <p className="toggleLoginSignup" onClick={toggleLoginSignup}>
               Pas encore de compte ? Inscris-toi !
             </p>
           </form>
