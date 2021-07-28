@@ -14,8 +14,6 @@ const Home = (props) => {
   const params = qs.parse(location.search.substring(1));
   const page = params.page;
   const limit = params.limit;
-  const priceMax = params.priceMax;
-  const priceMin = params.priceMin;
   let sort;
   if (toggleSwitch) {
     sort = "price-desc";
