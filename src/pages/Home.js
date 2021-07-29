@@ -1,19 +1,22 @@
 import imgFondCrashed from "../images/fond_img_head.svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import * as qs from "qs";
 
 const Home = (props) => {
   const { title, toggleSwitch } = props;
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  console.log(title);
+  const [isLimit, setIsLimit] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const location = useLocation();
-  const params = qs.parse(location.search.substring(1));
-  const page = params.page;
-  const limit = params.limit;
+  const handleChangeCurrentPage = (key) => {
+    setCurrentPage(key);
+  };
+
+  const handleChangeLimit = (event) => {
+    setIsLimit(event.target.value);
+  };
   let sort;
   if (toggleSwitch) {
     sort = "price-desc";
@@ -21,17 +24,22 @@ const Home = (props) => {
     sort = "price-asc";
   }
 
-  const fetchData = async () => {
-    const res = await axios.get(
-      `https://vinted-api-chris.herokuapp.com/offer?page=${page}&limit=${limit}&title=${title}&sort=${sort}`
-    );
-    setData(res.data);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(
+        `https://vinted-api-chris.herokuapp.com/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}`
+      );
+      setData(res.data);
+      setIsLoading(false);
+    };
     fetchData();
-  }, [title, toggleSwitch]);
+  }, [title, toggleSwitch, currentPage, isLimit, sort]);
+
+  const pages = Math.ceil(data.count / isLimit);
+  const pagesArr = [];
+  for (let i = 0; i < pages; i++) {
+    pagesArr.push([i + 1]);
+  }
 
   const detailsArticle = (offer, detail) => {
     for (let i = 0; i < offer.length; i++) {
@@ -61,6 +69,36 @@ const Home = (props) => {
           <h2>Prêts à faire du tri dans vos placards ?</h2>
           <button>Commencer à vendre</button>
         </div>
+      </div>
+      <div className="paging">
+        <span>Page(s) :</span>
+        <div className="pageNumbers">
+          {pagesArr.map((elem, index) => {
+            return (
+              <div
+                onClick={() => handleChangeCurrentPage(index + 1)}
+                className={
+                  index + 1 === currentPage
+                    ? "pageNumber currentPage"
+                    : "pageNumber"
+                }
+                key={index}
+              >
+                {elem}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="limitOfferPage">
+        <span>Nombre d'offres souhaité par page (5-100)</span>
+        <input
+          value={isLimit}
+          onChange={handleChangeLimit}
+          type="number"
+          min="5"
+          max="100"
+        />
       </div>
       <div className="articles contain">
         {data.offers.map((elem) => {

@@ -2,7 +2,7 @@ import logo from "../images/logo_vinted.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { Range } from "react-range";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Cookies from "js-cookie";
@@ -11,6 +11,8 @@ const Header = (props) => {
   const { search, setSearch, toggleSwitch, setToggleSwitch } = props;
   const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
   const [isShowing, setIsShowing] = useState([false, false]);
+
+  const [range, setRange] = useState([0, 10000]);
 
   const handleChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -73,6 +75,40 @@ const Header = (props) => {
             />
             <div className="slider"></div>
           </label>
+          <div className="range">
+            <span>Prix entre :</span>
+            <Range
+              step={5}
+              min={0}
+              max={10000}
+              values={range}
+              onChange={(value) => setRange(value)}
+              renderTrack={({ props, children }) => (
+                <div
+                  {...props}
+                  style={{
+                    ...props.style,
+                    height: "6px",
+                    width: "100%",
+                    backgroundColor: "#ccc",
+                  }}
+                >
+                  {children}
+                </div>
+              )}
+              renderThumb={({ props }) => (
+                <div
+                  {...props}
+                  style={{
+                    ...props.style,
+                    height: "25px",
+                    width: "25px",
+                    backgroundColor: "#999",
+                  }}
+                />
+              )}
+            />
+          </div>
         </div>
       </div>
       <nav>

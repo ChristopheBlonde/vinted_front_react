@@ -43,6 +43,16 @@ header {
       align-items: center;
       span {
         margin-right: 5px;
+        flex-shrink: 0;
+      }
+      .range {
+        display: flex;
+        align-items: center;
+        width: 65%;
+        margin: 0 10px;
+        span {
+          margin-right: 15px;
+        }
       }
     }
   }
@@ -98,6 +108,7 @@ header {
     outline: none;
   }
 }
+/* Checkbox toggle */
 .switch {
   position: relative;
   display: inline-block;
@@ -126,6 +137,7 @@ header {
 
 .slider:before {
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -191,7 +203,41 @@ input:checked + .slider:before {
       }
     }
   }
-
+  .paging {
+    margin: 20px 0 10px 20px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 10px;
+    }
+    .pageNumbers {
+      display: flex;
+      .pageNumber {
+        font-size: 24px;
+        padding: 0 5px;
+        margin-right: 5px;
+        background-color: white;
+        border: solid 1px $color-vinted-green;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .currentPage {
+        color: white;
+        background-color: $color-vinted-green;
+      }
+    }
+  }
+  .limitOfferPage {
+    margin-left: 30px;
+    input {
+      border: solid 1px $color-vinted-green;
+      border-radius: 5px;
+      margin-left: 10px;
+      outline: none;
+    }
+  }
   .articles {
     display: flex;
     flex-wrap: wrap;
@@ -436,3 +482,4 @@ input:checked + .slider:before {
     }
   }
 }
+/* test range */
