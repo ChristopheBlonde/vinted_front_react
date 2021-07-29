@@ -14,7 +14,7 @@ body {
 }
 
 .contain {
-  max-width: 1350px;
+  max-width: 90vw;
   margin: 0 auto;
 }
 h2 {
@@ -28,7 +28,7 @@ a {
 
 header {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 120px;
   img {
@@ -48,7 +48,7 @@ header {
       .range {
         display: flex;
         align-items: center;
-        width: 65%;
+        width: 100%;
         margin: 0 10px;
         span {
           margin-right: 15px;
@@ -115,6 +115,7 @@ header {
   width: 60px;
   height: 34px;
   outline: none;
+  flex-shrink: 0;
 }
 .switch input {
   position: absolute;
@@ -137,7 +138,6 @@ header {
 
 .slider:before {
   display: flex;
-  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   position: absolute;
