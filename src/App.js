@@ -18,6 +18,8 @@ library.add(faSearch, faEye, faEyeSlash, faTimes, faArrowUp, faArrowDown);
 function App() {
   const [search, setSearch] = useState("");
   const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [range, setRange] = useState([0, 2000]);
+  const [finalValue, setFinalValue] = useState([0, 2000]);
 
   return (
     <Router>
@@ -26,13 +28,21 @@ function App() {
         setSearch={setSearch}
         toggleSwitch={toggleSwitch}
         setToggleSwitch={setToggleSwitch}
+        range={range}
+        setRange={setRange}
+        setFinalValue={setFinalValue}
       />
       <Switch>
         <Route path="/offer/:id">
           <Offer />
         </Route>
         <Route exact path="/">
-          <Home title={search} toggleSwitch={toggleSwitch} />
+          <Home
+            title={search}
+            toggleSwitch={toggleSwitch}
+            range={range}
+            finalValue={finalValue}
+          />
         </Route>
       </Switch>
     </Router>

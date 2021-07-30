@@ -2,17 +2,23 @@ import logo from "../images/logo_vinted.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { Range } from "react-range";
+import { Range, getTrackBackground } from "react-range";
 import Signup from "../pages/Signup";
 import Login from "../pages/Login";
 import Cookies from "js-cookie";
 
 const Header = (props) => {
-  const { search, setSearch, toggleSwitch, setToggleSwitch } = props;
+  const {
+    search,
+    setSearch,
+    toggleSwitch,
+    setToggleSwitch,
+    range,
+    setRange,
+    setFinalValue,
+  } = props;
   const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
   const [isShowing, setIsShowing] = useState([false, false]);
-
-  const [range, setRange] = useState([0, 10000]);
 
   const handleChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -80,32 +86,34 @@ const Header = (props) => {
             <Range
               step={5}
               min={0}
-              max={10000}
+              max={2000}
               values={range}
               onChange={(value) => setRange(value)}
-              renderTrack={({ props, children }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: "6px",
-                    width: "100%",
-                    backgroundColor: "#ccc",
-                  }}
-                >
-                  {children}
-                </div>
-              )}
+              onFinalChange={(values) => {
+                setFinalValue(values);
+              }}
+              renderTrack={({ props, children }) => {
+                return (
+                  <div
+                    className="track"
+                    {...props}
+                    style={{
+                      background: getTrackBackground({
+                        values: range,
+                        colors: ["#ccc", "#09b0ba", "#ccc"],
+                        min: 0,
+                        max: 2000,
+                      }),
+                    }}
+                  >
+                    {children}
+                  </div>
+                );
+              }}
               renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: "25px",
-                    width: "25px",
-                    backgroundColor: "#999",
-                  }}
-                />
+                <div className="trackThumb" {...props}>
+                  <div className="price">{range[props.key]}</div>
+                </div>
               )}
             />
           </div>

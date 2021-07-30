@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Home = (props) => {
-  const { title, toggleSwitch } = props;
+  const { title, toggleSwitch, finalValue } = props;
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isLimit, setIsLimit] = useState(10);
@@ -27,13 +27,13 @@ const Home = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `https://vinted-api-chris.herokuapp.com/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}`
+        `https://vinted-api-chris.herokuapp.com/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}&priceMin=${finalValue[0]}&priceMax=${finalValue[1]}`
       );
       setData(res.data);
       setIsLoading(false);
     };
     fetchData();
-  }, [title, toggleSwitch, currentPage, isLimit, sort]);
+  }, [title, toggleSwitch, currentPage, isLimit, sort, finalValue]);
 
   const pages = Math.ceil(data.count / isLimit);
   const pagesArr = [];
