@@ -46,6 +46,10 @@ const Header = (props) => {
     }
     setIsShowing(newArr);
   };
+  const openLogin = [false, true];
+  const handleLoginOpen = () => {
+    setIsShowing(openLogin);
+  };
 
   const closeModals = [false, false];
   const handleDisconnected = () => {
@@ -88,7 +92,7 @@ const Header = (props) => {
               min={0}
               max={2000}
               values={range}
-              onChange={(value) => setRange(value)}
+              onChange={(values) => setRange(values)}
               onFinalChange={(values) => {
                 setFinalValue(values);
               }}
@@ -157,8 +161,8 @@ const Header = (props) => {
           </>
         )}
 
-        <Link className="buttonSell" to="">
-          <button>Vends tes articles</button>
+        <Link className="buttonSell" to={token ? "/publish" : undefined}>
+          <button onClick={() => toggle(0)}>Vends tes articles</button>
         </Link>
       </nav>
     </header>

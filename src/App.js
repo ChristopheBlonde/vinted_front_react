@@ -4,6 +4,8 @@ import { useState } from "react";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import Offer from "./pages/Offer";
+import Publish from "./pages/Publish";
+import Footer from "./components/Footer/Footer";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faEye,
@@ -36,6 +38,9 @@ function App() {
         <Route path="/offer/:id">
           <Offer />
         </Route>
+        <Route path="/publish">
+          <Publish />
+        </Route>
         <Route exact path="/">
           <Home
             title={search}
@@ -45,6 +50,7 @@ function App() {
           />
         </Route>
       </Switch>
+      <Footer />
     </Router>
   );
 }

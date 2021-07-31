@@ -15,6 +15,9 @@ const Home = (props) => {
   };
 
   const handleChangeLimit = (event) => {
+    if (event.target.value < 5) {
+      return;
+    }
     setIsLimit(event.target.value);
   };
   let sort;
@@ -75,7 +78,8 @@ const Home = (props) => {
         <div className="pageNumbers">
           {pagesArr.map((elem, index) => {
             return (
-              <div
+              <Link
+                to={`/?page=${index + 1}`}
                 onClick={() => handleChangeCurrentPage(index + 1)}
                 className={
                   index + 1 === currentPage
@@ -85,7 +89,7 @@ const Home = (props) => {
                 key={index}
               >
                 {elem}
-              </div>
+              </Link>
             );
           })}
         </div>

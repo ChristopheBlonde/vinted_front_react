@@ -1,3 +1,7 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;400;700&display=swap");
+
 /* Variables */
 
 $color-vinted-green: #09b0ba;
@@ -6,11 +10,12 @@ $color-greyLight: #bababa;
 $color-greyDark: rgb(153, 153, 153);
 $color-greyDarkBack: rgba(153, 153, 153, 0.8);
 $color-background-offer: #eaedee;
-$fontMaison: "Maison Neue";
+$font-indie: "Indie Flower", cursive;
+$font-gothic: "Gothic A1", sans-serif;
 /* Global rules */
 
 body {
-  font-family: $fontMaison;
+  font-family: $font-gothic;
 }
 
 .contain {
@@ -38,7 +43,7 @@ header {
     display: flex;
     flex-direction: column;
     .priceChois {
-      margin-top: 10px;
+      margin-top: 15px;
       display: flex;
       align-items: center;
       span {
@@ -70,7 +75,7 @@ header {
       background-color: $color-grey-white;
       border: none;
       outline: none;
-      font-family: $fontMaison;
+      font-family: $font-gothic;
       font-size: 16px;
       border-radius: 5px;
     }
@@ -178,10 +183,10 @@ input:checked + .slider:before {
   position: relative;
   .price {
     position: absolute;
-    top: -18px;
+    top: -22px;
     color: white;
     background-color: $color-vinted-green;
-    padding: 0 5px;
+    padding: 2px 5px;
     border-radius: 3px;
   }
 }
@@ -239,7 +244,7 @@ input:checked + .slider:before {
       display: flex;
       .pageNumber {
         font-size: 24px;
-        padding: 0 5px;
+        padding: 3px 5px 0 5px;
         margin-right: 5px;
         background-color: white;
         border: solid 1px $color-vinted-green;
