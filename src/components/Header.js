@@ -16,8 +16,9 @@ const Header = (props) => {
     range,
     setRange,
     setFinalValue,
+    token,
+    setToken,
   } = props;
-  const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
   const [isShowing, setIsShowing] = useState([false, false]);
 
   const handleChangeSearch = (event) => {
@@ -45,10 +46,6 @@ const Header = (props) => {
       document.body.style.overflow = "auto";
     }
     setIsShowing(newArr);
-  };
-  const openLogin = [false, true];
-  const handleLoginOpen = () => {
-    setIsShowing(openLogin);
   };
 
   const closeModals = [false, false];
@@ -116,7 +113,7 @@ const Header = (props) => {
               }}
               renderThumb={({ props }) => (
                 <div className="trackThumb" {...props}>
-                  <div className="price">{range[props.key]}</div>
+                  <div className="price">{range[props.key] + "€"}</div>
                 </div>
               )}
             />
@@ -161,7 +158,7 @@ const Header = (props) => {
           </>
         )}
 
-        <Link className="buttonSell" to={token ? "/publish" : undefined}>
+        <Link className="buttonSell" to={token ? "/publish" : "/"}>
           <button onClick={() => toggle(0)}>Vends tes articles</button>
         </Link>
       </nav>

@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Publish from "./pages/Publish";
 import Footer from "./components/Footer/Footer";
+import Cookies from "js-cookie";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faEye,
@@ -22,6 +23,7 @@ function App() {
   const [toggleSwitch, setToggleSwitch] = useState(false);
   const [range, setRange] = useState([0, 2000]);
   const [finalValue, setFinalValue] = useState([0, 2000]);
+  const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
 
   return (
     <Router>
@@ -33,13 +35,15 @@ function App() {
         range={range}
         setRange={setRange}
         setFinalValue={setFinalValue}
+        token={token}
+        setToken={setToken}
       />
       <Switch>
         <Route path="/offer/:id">
           <Offer />
         </Route>
         <Route path="/publish">
-          <Publish />
+          <Publish token={token} />
         </Route>
         <Route exact path="/">
           <Home

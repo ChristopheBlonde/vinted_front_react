@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import reactDom from "react-dom";
+import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Login = (props) => {
@@ -10,6 +11,8 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
+
+  let history = useHistory();
 
   const handleUserName = (event) => {
     const value = event.target.value;
@@ -46,9 +49,9 @@ const Login = (props) => {
       const token = Cookies.set("tokenLogin", response.data.token, {
         expires: 7,
       });
-      console.log(Cookies.get("tokenLogin"));
       setToken(token);
-      closeAllModal();
+      document.body.style.overflow = "auto";
+      history.goBack();
 
       return alert(`Bienvenue ${userLogin}`);
     }
