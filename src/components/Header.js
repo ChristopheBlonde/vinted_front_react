@@ -159,7 +159,9 @@ const Header = (props) => {
         )}
 
         <Link className="buttonSell" to={token ? "/publish" : "/"}>
-          <button onClick={() => toggle(0)}>Vends tes articles</button>
+          <button onClick={token ? null : () => toggle(0)}>
+            Vends tes articles
+          </button>
         </Link>
       </nav>
     </header>

@@ -22,7 +22,6 @@ function Publish(props) {
   const [dropzone, setDropzone] = useState([]);
   const onDrop = useCallback(
     (acceptedFiles) => {
-      console.log(dropzone.length);
       if (dropzone.length < 5) {
         const newDropzone = [...dropzone, acceptedFiles];
         const pictureAdded = acceptedFiles.map((elem) =>
@@ -90,7 +89,6 @@ function Publish(props) {
     formData.append("size", taille);
     formData.append("color", couleur);
     formData.append("exchange", checkBox);
-    console.log(formData);
     try {
       const response = await axios.post(
         "https://vinted-api-chris.herokuapp.com/offer/publish",
@@ -104,6 +102,7 @@ function Publish(props) {
       );
       const newArticle = response.data._id;
       history.push(`/offer/${newArticle}`);
+      //  document.body.style.overflow = "auto";
     } catch (error) {
       console.log(error);
     }

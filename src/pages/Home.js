@@ -110,10 +110,19 @@ const Home = (props) => {
             <Link key={elem._id} to={`/offer/${elem._id}`}>
               <div className="article">
                 <h3>{elem.owner.account.username}</h3>
-                <img
-                  src={elem.product_image.secure_url}
-                  alt={elem.product_name}
-                />
+                {elem.product_image &&
+                elem.product_image.secure_url !== undefined ? (
+                  <img
+                    src={elem.product_image.secure_url}
+                    alt={elem.product_name}
+                  />
+                ) : (
+                  <img
+                    src={elem.product_image.picture1.result.secure_url}
+                    alt={elem.product_image.picture1.result.product_name}
+                  />
+                )}
+
                 <span>{intlFormat(elem.product_price)} </span>
                 <span className="detail">
                   {detailsArticle(elem.product_details, "MARQUE")}

@@ -31,16 +31,29 @@ const Offer = () => {
   /* Variable for details*/
   const offerDetails = article.product_details;
 
+  /* fetch images */
+  const fetchImages = () => {
+    const images = [];
+    const imagesKeys = Object.keys(article.product_image);
+    imagesKeys.forEach((key) => {
+      if (article.product_image[key].success) {
+        images.push(article.product_image[key].result.secure_url);
+      } else if (key === "secure_url") {
+        images.push(article.product_image[key]);
+      }
+    });
+    return images;
+  };
+
   return isLoading ? (
     <div>Chargement en cours...</div>
   ) : (
     <div className="contentOffer">
       <div className="offer contain">
         <div className="col-1">
-          <img
-            src={article.product_image.secure_url}
-            alt={article.product_name}
-          />
+          {fetchImages().map((elem, index) => {
+            return <img key={index} src={elem} alt="article à vendre" />;
+          })}
         </div>
         <div className="col-2">
           <div className="offerDetails">
