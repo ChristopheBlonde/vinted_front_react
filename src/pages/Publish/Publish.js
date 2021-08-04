@@ -1,3 +1,4 @@
+import "./Publish.scss";
 import axios from "axios";
 import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
@@ -91,7 +92,7 @@ function Publish(props) {
     formData.append("exchange", checkBox);
     try {
       const response = await axios.post(
-        "https://vinted-api-chris.herokuapp.com/offer/publish",
+        "http://localhost:5000/offer/publish",
         formData,
         {
           headers: {
@@ -102,7 +103,6 @@ function Publish(props) {
       );
       const newArticle = response.data._id;
       history.push(`/offer/${newArticle}`);
-      //  document.body.style.overflow = "auto";
     } catch (error) {
       console.log(error);
     }

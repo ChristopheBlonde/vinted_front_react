@@ -1,3 +1,4 @@
+import "./Offer.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -11,9 +12,7 @@ const Offer = () => {
   /* fetch data */
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(
-        `https://vinted-api-chris.herokuapp.com/offer/${id}`
-      );
+      const res = await axios.get(`http://localhost:5000/offer/${id}`);
       setArticle(res.data[0]);
       setIsLoading(false);
     };
@@ -84,7 +83,11 @@ const Offer = () => {
 
               {article.owner.account.avatar ? (
                 <div className="author">
-                  <div className="avatar">{article.owner.account.avatar}</div>
+                  <img
+                    className="avatar"
+                    src={article.owner.account.avatar.secure_url}
+                    alt=""
+                  />
                   {article.owner.account.username}
                 </div>
               ) : (

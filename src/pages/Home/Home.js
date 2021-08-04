@@ -1,4 +1,5 @@
-import imgFondCrashed from "../images/fond_img_head.svg";
+import "./Home.scss";
+import imgFondCrashed from "../../images//fond_img_head.svg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -30,7 +31,7 @@ const Home = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `https://vinted-api-chris.herokuapp.com/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}&priceMin=${finalValue[0]}&priceMax=${finalValue[1]}`
+        `http://localhost:5000/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}&priceMin=${finalValue[0]}&priceMax=${finalValue[1]}`
       );
       setData(res.data);
       setIsLoading(false);

@@ -1,0 +1,106 @@
+/* Variables */
+
+$color-vinted-green: #09b0ba;
+$color-greyLight: #bababa;
+
+// /* Home */
+
+.home {
+  /* Head picture */
+  .headHome {
+    position: relative;
+    .headSell {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      width: 25vw;
+      height: 250px;
+      background-color: white;
+      border-radius: 5px;
+      padding: 25px;
+      position: absolute;
+      top: 90px;
+      left: 70px;
+    }
+    button {
+      height: 45px;
+      width: 185px;
+      background-color: $color-vinted-green;
+      color: white;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+    .pictureBack {
+      width: 98%;
+      height: 500px;
+      background-position: center;
+      background-size: cover;
+      background-image: url("../../images//fond_header.jpg");
+      position: relative;
+      img {
+        position: absolute;
+        bottom: -2px;
+      }
+    }
+  }
+
+  /* Paging and number offers page */
+  .paging {
+    margin: 20px 0 10px 20px;
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 10px;
+    }
+    .pageNumbers {
+      display: flex;
+      .pageNumber {
+        font-size: 24px;
+        padding: 3px 5px 0 5px;
+        margin-right: 5px;
+        background-color: white;
+        border: solid 1px $color-vinted-green;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      .currentPage {
+        color: white;
+        background-color: $color-vinted-green;
+      }
+    }
+  }
+  .limitOfferPage {
+    margin-left: 30px;
+    input {
+      border: solid 1px $color-vinted-green;
+      border-radius: 5px;
+      margin-left: 10px;
+      outline: none;
+    }
+  }
+
+  /* articles */
+  .articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .article {
+      display: flex;
+      flex-direction: column;
+      margin: 20px 10px 0 0;
+      img {
+        width: 240px;
+        height: 360px;
+        object-fit: cover;
+      }
+      .detail {
+        color: $color-greyLight;
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+  }
+}

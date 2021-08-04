@@ -1,0 +1,106 @@
+/* Variables */
+$color-greyLight: #bababa;
+$color-greyDarkBack: rgba(153, 153, 153, 0.8);
+$color-greyDark: rgb(153, 153, 153);
+$color-vinted-green: #09b0ba;
+
+/* Signup and login modals */
+.containModal {
+  overflow: scroll;
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  background-color: $color-greyDarkBack;
+}
+.modal {
+  background-color: white;
+  border: 2px solid $color-greyLight;
+  position: relative;
+  overflow: visible;
+  width: 370px;
+  top: 50px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+
+  .iconCloseModal {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-size: 48px;
+  }
+  label {
+    width: 100%;
+    input {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 20px 0;
+      padding: 10px;
+      border: none;
+      background-color: white;
+      border-bottom: solid 1px $color-greyDark;
+      font-size: 18px;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+  .newLetter {
+    display: flex;
+    flex-direction: column;
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      margin: 20px 0;
+      input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+      input:after {
+        background-color: $color-vinted-green;
+      }
+    }
+    p {
+      margin-bottom: 20px;
+    }
+  }
+  .toggleLoginSignup {
+    text-align: center;
+    color: $color-vinted-green;
+    cursor: pointer;
+  }
+  button {
+    width: 100%;
+    color: white;
+    background-color: $color-vinted-green;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  a {
+    color: $color-vinted-green;
+    text-align: center;
+  }
+  .inputPassword {
+    position: relative;
+    .iconPassword {
+      position: absolute;
+      right: 5px;
+      bottom: 30px;
+    }
+  }
+}

@@ -1,10 +1,11 @@
-import logo from "../images/logo_vinted.png";
+import "./Header.scss";
+import logo from "../../images/logo_vinted.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
-import Signup from "../pages/Signup";
-import Login from "../pages/Login";
+import Signup from "../Modals/Signup/Signup";
+import Login from "../Modals/Login/Login";
 import Cookies from "js-cookie";
 
 const Header = (props) => {
@@ -18,6 +19,8 @@ const Header = (props) => {
     setFinalValue,
     token,
     setToken,
+    avatar,
+    setAvatar,
   } = props;
   const [isShowing, setIsShowing] = useState([false, false]);
 
@@ -48,12 +51,11 @@ const Header = (props) => {
     setIsShowing(newArr);
   };
 
-  const closeModals = [false, false];
   const handleDisconnected = () => {
     Cookies.remove("tokenLogin");
     setToken("");
-
-    setIsShowing(closeModals);
+    Cookies.remove("avatar");
+    setAvatar("");
   };
 
   return (
@@ -122,7 +124,8 @@ const Header = (props) => {
       </div>
       <nav>
         {token ? (
-          <div>
+          <div className="signOut">
+            <img className="avatarIcon" src={avatar} alt="" />
             <button
               onClick={handleDisconnected}
               className="buttonDisconnection"
@@ -153,6 +156,7 @@ const Header = (props) => {
                 isShowing={isShowing}
                 setIsShowing={setIsShowing}
                 isShowingIndex={isShowing[0]}
+                setAvatar={setAvatar}
               />
             </div>
           </>

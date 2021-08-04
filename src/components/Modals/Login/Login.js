@@ -1,3 +1,4 @@
+import "../Modal.scss";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
@@ -6,7 +7,8 @@ import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Login = (props) => {
-  const { isShowing, setIsShowing, isShowingIndex, setToken } = props;
+  const { isShowing, setIsShowing, isShowingIndex, setToken, setAvatar } =
+    props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,13 +44,19 @@ const Login = (props) => {
       login.email = email;
       login.password = password;
       const response = await axios.post(
-        "https://vinted-api-chris.herokuapp.com/user/login",
+        "http://localhost:5000/user/login",
         login
       );
       const userLogin = response.data.account.username;
       const token = Cookies.set("tokenLogin", response.data.token, {
         expires: 7,
       });
+      const avatarImg = response.data.account.avatar.secure_url;
+      Cookies.set("avatar", avatarImg, { expires: 7 });
+
+      if (avatarImg) {
+        setAvatar(avatarImg);
+      }
       setToken(token);
       document.body.style.overflow = "auto";
       history.goBack();

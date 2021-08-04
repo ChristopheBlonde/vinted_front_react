@@ -1,3 +1,4 @@
+import "../Modal.scss";
 import { useState } from "react";
 import reactDom from "react-dom";
 import axios from "axios";

@@ -1,0 +1,183 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100;400;700&display=swap");
+
+/* Variables */
+
+$color-vinted-green: #09b0ba;
+$color-grey-white: #f5f6f7;
+$color-greyDark: rgb(153, 153, 153);
+$font-gothic: "Gothic A1", sans-serif;
+
+/* Header */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  img {
+    width: 120px;
+  }
+  .containSearch {
+    display: flex;
+    flex-direction: column;
+    .priceChois {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      span {
+        margin-right: 5px;
+        flex-shrink: 0;
+      }
+      .range {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin: 0 10px;
+        span {
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+  .searchLabel {
+    position: relative;
+    .searchIcon {
+      position: absolute;
+      left: 5px;
+      top: 10px;
+      color: $color-greyDark;
+    }
+    input {
+      width: 40vw;
+      padding: 10px 25px;
+      background-color: $color-grey-white;
+      border: none;
+      outline: none;
+      font-family: $font-gothic;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+  }
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  .signOut {
+    display: flex;
+    align-items: center;
+    .avatarIcon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+  }
+  button {
+    width: 110px;
+    height: 30px;
+    border: solid 2px $color-vinted-green;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    background-color: #fff;
+    color: $color-vinted-green;
+  }
+
+  .buttonLogin {
+    margin-right: 20px;
+  }
+
+  .buttonSell button {
+    color: white;
+    background-color: $color-vinted-green;
+    margin-left: 20px;
+  }
+
+  .buttonDisconnection {
+    background-color: lightcoral;
+    color: white;
+    border: none;
+    margin-right: 15px;
+    outline: none;
+  }
+}
+/* Checkbox toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  outline: none;
+  flex-shrink: 0;
+}
+.switch input {
+  position: absolute;
+  top: -99999px;
+  left: -99999px;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-vinted-green;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  content: "⇡";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background-color: $color-vinted-green;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px $color-vinted-green;
+}
+input:checked + .slider:before {
+  content: "⇣";
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/* Range prices */
+.track {
+  height: 6px;
+  width: 100%;
+  background-color: $color-vinted-green;
+}
+.trackThumb {
+  height: 15px;
+  width: 15px;
+  background-color: $color-vinted-green;
+  border-radius: 50%;
+  outline: none;
+  position: relative;
+  .price {
+    position: absolute;
+    top: -22px;
+    color: white;
+    background-color: $color-vinted-green;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+}

@@ -1,0 +1,109 @@
+/* Variables */
+
+$color-vinted-green: #09b0ba;
+$color-greyLight: #bababa;
+$color-greyDarkBack: rgba(153, 153, 153, 0.8);
+$color-background-offer: #eaedee;
+$font-gothic: "Gothic A1", sans-serif;
+
+/* Publish */
+.bodyPublish {
+  padding: 80px 0;
+  background-color: $color-background-offer;
+}
+h1 {
+  font-size: 30px;
+}
+.formPublish {
+  .pictureAdded {
+    width: 150px;
+  }
+  .block-0,
+  .block-1,
+  .block-2,
+  .block-3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: solid 2px $color-greyDarkBack;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: white;
+    h2 {
+      font-size: 20px;
+      flex: 1;
+    }
+    .dropzone {
+      min-height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .dropzoneInput {
+        border: dashed 2px $color-greyLight;
+        width: 90%;
+        min-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .fieldsArticle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 15px;
+      border-bottom: solid 1px $color-background-offer;
+
+      label {
+        flex: 1;
+      }
+      input,
+      textarea {
+        width: 95%;
+        padding: 10px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid $color-background-offer;
+        font-size: 18px;
+      }
+      textarea {
+        height: 80px;
+        resize: none;
+        font-family: $font-gothic;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: $color-greyLight;
+        font-size: 14px;
+      }
+    }
+  }
+  .submitButton {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      background-color: $color-vinted-green;
+      color: white;
+      font-size: 20px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+    }
+  }
+}
+.block-1 .fieldsArticle:nth-child(2),
+.block-2 .fieldsArticle:nth-child(5) {
+  border-bottom: none;
+}
+
+.checkboxPublish {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 15px 288px;
+}
+input[type="checkbox"] {
+  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+}
