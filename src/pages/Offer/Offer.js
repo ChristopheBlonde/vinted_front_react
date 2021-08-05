@@ -2,11 +2,12 @@ import "./Offer.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const Offer = () => {
+const Offer = (props) => {
+  const { token, toggle, article, setArticle } = props;
   const { id } = useParams();
 
-  const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   /* fetch data */
@@ -17,7 +18,7 @@ const Offer = () => {
       setIsLoading(false);
     };
     fetchData();
-  }, [id]);
+  }, [id, setArticle]);
 
   /* Function for price format */
   const intlFormat = (num) => {
@@ -94,7 +95,9 @@ const Offer = () => {
                 <div className="author">{article.owner.account.username}</div>
               )}
             </div>
-            <button>Acheter</button>
+            <Link to={token ? "/payment" : "/offer/:id"}>
+              <button onClick={token ? null : () => toggle(0)}>Acheter</button>
+            </Link>
           </div>
         </div>
       </div>

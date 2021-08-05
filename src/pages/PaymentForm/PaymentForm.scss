@@ -1,0 +1,76 @@
+/* Variables */
+$color-greyDarkBack: rgba(153, 153, 153, 0.8);
+$color-greyLight: #bababa;
+$color-vinted-green: #09b0ba;
+
+/* Global */
+h3 {
+  font-size: 28px;
+  font-weight: bold;
+  padding-bottom: 40px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+/* Payment */
+.contentPayment {
+  background-color: $color-greyDarkBack;
+  padding: 50px 0;
+  .payment {
+    margin: 0 auto;
+    padding: 40px 0;
+    width: 60vw;
+    background-color: white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    .summary {
+      width: 100%;
+      margin-bottom: 20px;
+      border-bottom: solid 1px $color-greyLight;
+      .bold {
+        font-weight: bold;
+      }
+      .cardInput {
+        padding: 10px;
+        border: 1px solid $color-vinted-green;
+        border-radius: 5px;
+        margin-bottom: 30px;
+      }
+    }
+    .infoPrice {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .summary:last-child {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0;
+      border-bottom: none;
+      .test {
+        width: 100%;
+      }
+    }
+    button {
+      background-color: $color-vinted-green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      width: 90%;
+      padding: 10px;
+      font-size: 20px;
+    }
+  }
+  .infoPrice,
+  h3,
+  .cardInput {
+    margin: 0 30px;
+  }
+  p {
+    margin: 0 30px 20px 30px;
+    padding-top: 10px;
+  }
+}

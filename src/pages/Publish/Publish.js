@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
+import Cookies from "js-cookie";
 
 function Publish(props) {
   const { token } = props;
@@ -96,7 +97,7 @@ function Publish(props) {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Cookies.get("tokenLogin")}`,
             "Content-Type": "multipart/form-data",
           },
         }

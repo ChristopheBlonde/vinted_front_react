@@ -2,7 +2,6 @@ import "./Header.scss";
 import logo from "../../images/logo_vinted.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import Signup from "../Modals/Signup/Signup";
 import Login from "../Modals/Login/Login";
@@ -21,8 +20,10 @@ const Header = (props) => {
     setToken,
     avatar,
     setAvatar,
+    isShowing,
+    setIsShowing,
+    toggle,
   } = props;
-  const [isShowing, setIsShowing] = useState([false, false]);
 
   const handleChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -31,24 +32,6 @@ const Header = (props) => {
   const handleChangeToggleSwitch = () => {
     const toggle = !toggleSwitch;
     setToggleSwitch(toggle);
-  };
-
-  /* Modals showed */
-  const newArr = [...isShowing];
-  const toggle = (index) => {
-    if (index === 0) {
-      newArr[0] = !newArr[0];
-      newArr[1] = false;
-      document.body.style.overflow = "hidden";
-    } else {
-      newArr[1] = !newArr[1];
-      newArr[0] = false;
-      document.body.style.overflow = "hidden";
-    }
-    if (!newArr[1] && !newArr[0]) {
-      document.body.style.overflow = "auto";
-    }
-    setIsShowing(newArr);
   };
 
   const handleDisconnected = () => {
@@ -125,7 +108,7 @@ const Header = (props) => {
       <nav>
         {token ? (
           <div className="signOut">
-            <img className="avatarIcon" src={avatar} alt="" />
+            {avatar ? <img className="avatarIcon" src={avatar} alt="" /> : null}
             <button
               onClick={handleDisconnected}
               className="buttonDisconnection"
