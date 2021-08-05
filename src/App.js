@@ -33,7 +33,7 @@ function App() {
   const [isShowing, setIsShowing] = useState([false, false]);
   const [article, setArticle] = useState({});
   const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
-  const [avatar, setAvatar] = useState(Cookies.get("avatar") || "");
+  const [avatar, setAvatar] = useState(Cookies.get("avatar") || null);
 
   /* Modals showed */
   const newArr = [...isShowing];

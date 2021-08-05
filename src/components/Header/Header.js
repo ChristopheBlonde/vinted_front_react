@@ -1,5 +1,6 @@
 import "./Header.scss";
 import logo from "../../images/logo_vinted.png";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { Range, getTrackBackground } from "react-range";
@@ -25,6 +26,8 @@ const Header = (props) => {
     toggle,
   } = props;
 
+  const history = useHistory();
+
   const handleChangeSearch = (event) => {
     setSearch(event.target.value);
   };
@@ -38,7 +41,11 @@ const Header = (props) => {
     Cookies.remove("tokenLogin");
     setToken("");
     Cookies.remove("avatar");
-    setAvatar("");
+    setAvatar(null);
+    if (isShowing[0]) {
+      toggle(0);
+    }
+    history.push("/");
   };
 
   return (

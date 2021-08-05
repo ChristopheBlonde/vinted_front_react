@@ -14,7 +14,7 @@ const Offer = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
-        `https://vinted-api-chris.herokuapp.com/${id}`
+        `https://vinted-api-chris.herokuapp.com/offer/${id}`
       );
       // const res = await axios.get(`http://localhost:5000/offer/${id}`);
       setArticle(res.data[0]);

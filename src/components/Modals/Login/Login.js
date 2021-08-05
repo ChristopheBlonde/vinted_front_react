@@ -39,31 +39,37 @@ const Login = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const login = {};
-    if (password && email) {
-      login.email = email;
-      login.password = password;
-      const response = await axios.post(
-        "https://vinted-api-chris.herokuapp.com/user/login",
-        // "http://localhost:5000/user/login",
-        login
-      );
-      const userLogin = response.data.account.username;
-      const token = response.data.token;
-      Cookies.set("tokenLogin", token, {
-        expires: 7,
-      });
-      const avatarImg = response.data.account.avatar.secure_url;
-      Cookies.set("avatar", avatarImg, { expires: 7 });
+    try {
+      const login = {};
+      if (password && email) {
+        login.email = email;
+        login.password = password;
+        const response = await axios.post(
+          "https://vinted-api-chris.herokuapp.com/user/login",
+          // "http://localhost:5000/user/login",
+          login
+        );
+        const userLogin = response.data.account.username;
+        const token = response.data.token;
+        Cookies.set("tokenLogin", token, {
+          expires: 7,
+        });
+        if (
+          response.data.account.avatar &&
+          response.data.account.avatar.secure_url
+        ) {
+          const avatarImg = response.data.account.avatar.secure_url;
+          Cookies.set("avatar", avatarImg, { expires: 7 });
+          setAvatar(avatarImg);
+        }
+        setToken(token);
+        document.body.style.overflow = "auto";
+        history.goBack();
 
-      if (avatarImg) {
-        setAvatar(avatarImg);
+        return alert(`Bienvenue ${userLogin}`);
       }
-      setToken(token);
-      document.body.style.overflow = "auto";
-      history.goBack();
-
-      return alert(`Bienvenue ${userLogin}`);
+    } catch (error) {
+      console.log(error);
     }
   };
   /* Modal */
