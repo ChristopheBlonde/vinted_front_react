@@ -30,8 +30,11 @@ const Home = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // const res = await axios.get(
+      //   `http://localhost:5000/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}&priceMin=${finalValue[0]}&priceMax=${finalValue[1]}`
+      // );
       const res = await axios.get(
-        `http://localhost:5000/offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}&priceMin=${finalValue[0]}&priceMax=${finalValue[1]}`
+        `https://vinted-api-chris.herokuapp.com//offer?page=${currentPage}&limit=${isLimit}&title=${title}&sort=${sort}&priceMin=${finalValue[0]}&priceMax=${finalValue[1]}`
       );
       setData(res.data);
       setIsLoading(false);

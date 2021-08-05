@@ -69,6 +69,7 @@ const Signup = (props) => {
         result.checkBox = checkBox;
         response = await axios.post(
           "https://vinted-api-chris.herokuapp.com/user/signup",
+          // "http://localhost:5000/user/login",
           result
         );
         const token = response.data.token;

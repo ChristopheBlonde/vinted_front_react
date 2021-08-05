@@ -13,7 +13,10 @@ const Offer = (props) => {
   /* fetch data */
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000/offer/${id}`);
+      const res = await axios.get(
+        `https://vinted-api-chris.herokuapp.com/${id}`
+      );
+      // const res = await axios.get(`http://localhost:5000/offer/${id}`);
       setArticle(res.data[0]);
       setIsLoading(false);
     };

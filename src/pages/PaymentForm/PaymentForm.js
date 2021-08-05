@@ -35,7 +35,8 @@ const Payment = (props) => {
     });
 
     const response = await axios.post(
-      "http://localhost:5000/payment",
+      "https://vinted-api-chris.herokuapp.com/payment",
+      // "http://localhost:5000/payment",
       {
         stripeToken: stripeResponse.token.id,
         article: article,

@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
-import Cookies from "js-cookie";
 
 function Publish(props) {
   const { token } = props;
@@ -93,11 +92,12 @@ function Publish(props) {
     formData.append("exchange", checkBox);
     try {
       const response = await axios.post(
-        "http://localhost:5000/offer/publish",
+        "https://vinted-api-chris.herokuapp.com/offer/publish",
+        //"http://localhost:5000/offer/publish",
         formData,
         {
           headers: {
-            Authorization: `Bearer ${Cookies.get("tokenLogin")}`,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "multipart/form-data",
           },
         }

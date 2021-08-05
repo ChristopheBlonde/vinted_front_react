@@ -44,11 +44,13 @@ const Login = (props) => {
       login.email = email;
       login.password = password;
       const response = await axios.post(
-        "http://localhost:5000/user/login",
+        "https://vinted-api-chris.herokuapp.com/user/login",
+        // "http://localhost:5000/user/login",
         login
       );
       const userLogin = response.data.account.username;
-      const token = Cookies.set("tokenLogin", response.data.token, {
+      const token = response.data.token;
+      Cookies.set("tokenLogin", token, {
         expires: 7,
       });
       const avatarImg = response.data.account.avatar.secure_url;
