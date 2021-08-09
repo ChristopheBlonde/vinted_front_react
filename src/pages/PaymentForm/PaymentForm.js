@@ -1,6 +1,7 @@
 import "./PaymentForm.scss";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
@@ -10,6 +11,7 @@ const Payment = (props) => {
   const elements = useElements();
   const [completed, setCompleted] = useState(false);
 
+  console.log(Cookies.get("userName"));
   /* Function for price format */
   const intlFormat = (num) => {
     return Intl.NumberFormat("fr-FR", {
@@ -18,7 +20,6 @@ const Payment = (props) => {
     }).format(num);
   };
 
-  console.log(article);
   const shippingFees = 0.8;
   const protectionFees = 0.4;
   const priceArticle = article.product_price;
@@ -72,8 +73,7 @@ const Payment = (props) => {
           <div className="payment">
             <div className="resultPayment">
               <h3>
-                Merci pour vôtre achat{" "}
-                <span>{article.owner.account.username}</span>.
+                Merci pour vôtre achat <span>{Cookies.get("userName")}</span>.
               </h3>
               <p>Vous venez de faire l'acquisition de cette article.</p>
               <img src={imageArticle} alt="" />

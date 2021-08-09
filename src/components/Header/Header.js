@@ -52,6 +52,7 @@ const Header = (props) => {
     setToken("");
     Cookies.remove("avatar");
     setAvatar(null);
+    Cookies.remove("userName");
     if (isShowing[0]) {
       toggle(0);
     }
