@@ -18,6 +18,7 @@ function Publish(props) {
   const [lieu, setLieu] = useState("");
   const [price, setPrice] = useState("");
   const [checkBox, setCheckBox] = useState(false);
+  const [loading, setLoading] = useState([false, false]);
 
   /* Drop Zone */
   const [dropzone, setDropzone] = useState([]);
@@ -75,6 +76,12 @@ function Publish(props) {
     setCheckBox(check);
   };
 
+  const handleChangeLoading = () => {
+    const newStateLoding = [...loading];
+    newStateLoding[1] = true;
+    setLoading(newStateLoding);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -102,8 +109,14 @@ function Publish(props) {
           },
         }
       );
+      if (await response) {
+        setLoading([false, true]);
+      }
       const newArticle = response.data._id;
-      history.push(`/offer/${newArticle}`);
+      setTimeout(() => {
+        history.push(`/offer/${newArticle}`);
+        setLoading([false, false]);
+      }, 6000);
     } catch (error) {
       console.log(error);
     }
@@ -132,10 +145,12 @@ function Publish(props) {
                   : null}
                 {isDragActive ? (
                   <p>Déplace l'image ici ...</p>
+                ) : dropzone.length === 5 ? (
+                  <p>Nombres de photos maximun.</p>
                 ) : (
-                  <div>
-                    Déplace une image ici ou clique pour ouvrir l'explorateur
-                  </div>
+                  <p>
+                    Déplace une image ici ou clique pour ouvrir l'explorateur.
+                  </p>
                 )}
               </div>
             </div>
@@ -249,7 +264,13 @@ function Publish(props) {
             </div>
           </div>
           <div className="submitButton">
-            <button type="submit">Ajouter</button>
+            <button
+              onClick={handleChangeLoading}
+              className={loading[0] ? "onclic" : loading[1] ? "validate" : ""}
+              type="submit"
+            >
+              Ajouter
+            </button>
           </div>
         </form>
       </div>

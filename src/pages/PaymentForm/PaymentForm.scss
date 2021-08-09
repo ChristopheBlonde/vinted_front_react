@@ -3,21 +3,20 @@ $color-greyDarkBack: rgba(153, 153, 153, 0.8);
 $color-greyLight: #bababa;
 $color-vinted-green: #09b0ba;
 
-/* Global */
-h3 {
-  font-size: 28px;
-  font-weight: bold;
-  padding-bottom: 40px;
-}
-
-h4 {
-  font-size: 20px;
-}
-
 /* Payment */
 .contentPayment {
   background-color: $color-greyDarkBack;
   padding: 50px 0;
+  /* Global */
+  h3 {
+    font-size: 28px;
+    font-weight: bold;
+    padding-bottom: 40px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+
   .payment {
     margin: 0 auto;
     padding: 40px 0;
@@ -62,6 +61,35 @@ h4 {
       width: 90%;
       padding: 10px;
       font-size: 20px;
+    }
+
+    /* Result of succeeded payment */
+    .resultPayment {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h3 {
+        font-weight: normal;
+      }
+      span {
+        font-weight: bold;
+      }
+      img {
+        max-width: 250px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+      p {
+        font-size: 18px;
+      }
+      a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        button {
+          width: 90%;
+        }
+      }
     }
   }
   .infoPrice,

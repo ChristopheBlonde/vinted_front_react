@@ -13,6 +13,7 @@ const Signup = (props) => {
   const [checkBox, setCheckBox] = useState(false);
   const [phone, setPhone] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleName = (event) => {
     const value = event.target.value;
@@ -59,6 +60,7 @@ const Signup = (props) => {
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
+      setLoading(true);
       const result = {};
       let response;
       if (name && email && password && (checkBox || !checkBox) && phone) {
@@ -74,10 +76,11 @@ const Signup = (props) => {
         );
         const token = response.data.token;
         Cookies.set("token", { token: token }, { expires: 1 });
-        toggleLoginSignup();
-        return alert(
-          `Merci ${result.username} votre compte a bien était créé.`
-        );
+
+        setTimeout(() => {
+          toggleLoginSignup();
+          setLoading(false);
+        }, 3000);
       }
     } catch (error) {
       console.log(error.message);
@@ -164,7 +167,12 @@ const Signup = (props) => {
                 Conditions de Vinted, avoir lu la Politique de Confidentialité,
                 et que j'ai plus de 18 ans.
               </p>
-              <button type="submit">S'inscrire</button>
+              <div className="containerButton">
+                <button className={loading ? "onclic" : ""} type="submit">
+                  S'inscrire
+                </button>
+              </div>
+
               <p className="toggleLoginSignup" onClick={toggleLoginSignup}>
                 Tu as déjà un compte ? Connecte-toi !
               </p>

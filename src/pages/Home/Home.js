@@ -1,15 +1,17 @@
 import "./Home.scss";
 import imgFondCrashed from "../../images//fond_img_head.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
 const Home = (props) => {
-  const { title, toggleSwitch, finalValue } = props;
+  const { title, toggleSwitch, finalValue, token, handleLoginPublish } = props;
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [isLimit, setIsLimit] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const location = useLocation();
 
   const handleChangeCurrentPage = (key) => {
     setCurrentPage(key);
@@ -68,12 +70,19 @@ const Home = (props) => {
     <div className="home">
       <div className="headHome">
         <div className="pictureBack">
-          <img className="test" src={imgFondCrashed} alt="" />
+          <img src={imgFondCrashed} alt="" />
         </div>
 
         <div className="headSell">
           <h2>Prêts à faire du tri dans vos placards ?</h2>
-          <button>Commencer à vendre</button>
+          <Link to={token ? "/publish" : location.pathname}>
+            <button
+              className="hover1"
+              onClick={token ? null : handleLoginPublish}
+            >
+              Commencer à vendre
+            </button>
+          </Link>
         </div>
       </div>
       <div className="paging">
@@ -107,7 +116,7 @@ const Home = (props) => {
           max="100"
         />
       </div>
-      <div className="articles contain">
+      <div className="articles">
         {data.offers.map((elem) => {
           return (
             <Link key={elem._id} to={`/offer/${elem._id}`}>

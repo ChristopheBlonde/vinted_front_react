@@ -6,6 +6,9 @@ $color-greyLight: #bababa;
 // /* Home */
 
 .home {
+  h3 {
+    font-size: 18px;
+  }
   /* Head picture */
   .headHome {
     position: relative;
@@ -26,13 +29,14 @@ $color-greyLight: #bababa;
       height: 45px;
       width: 185px;
       background-color: $color-vinted-green;
+      cursor: pointer;
       color: white;
       border-radius: 5px;
       border: none;
       font-size: 16px;
     }
     .pictureBack {
-      width: 98%;
+      width: 100%;
       height: 500px;
       background-position: center;
       background-size: cover;
@@ -84,6 +88,8 @@ $color-greyLight: #bababa;
 
   /* articles */
   .articles {
+    max-width: 90vw;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;

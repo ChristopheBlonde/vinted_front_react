@@ -34,6 +34,7 @@ function App() {
   const [article, setArticle] = useState({});
   const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
   const [avatar, setAvatar] = useState(Cookies.get("avatar") || null);
+  const [pageDirection, setPageDirection] = useState([false, false]);
 
   /* Modals showed */
   const newArr = [...isShowing];
@@ -53,6 +54,14 @@ function App() {
     setIsShowing(newArr);
   };
 
+  /* Login befor publish */
+  const handleLoginPublish = () => {
+    const publishPage = [...pageDirection];
+    publishPage[0] = true;
+    setPageDirection(publishPage);
+    toggle(0);
+  };
+
   return (
     <Router>
       <Header
@@ -62,6 +71,7 @@ function App() {
         setToggleSwitch={setToggleSwitch}
         range={range}
         setRange={setRange}
+        finalValue={finalValue}
         setFinalValue={setFinalValue}
         token={token}
         setToken={setToken}
@@ -70,6 +80,9 @@ function App() {
         isShowing={isShowing}
         setIsShowing={setIsShowing}
         toggle={toggle}
+        pageDirection={pageDirection}
+        setPageDirection={setPageDirection}
+        handleLoginPublish={handleLoginPublish}
       />
       <Switch>
         <Route path="/offer/:id">
@@ -78,6 +91,8 @@ function App() {
             toggle={toggle}
             article={article}
             setArticle={setArticle}
+            pageDirection={pageDirection}
+            setPageDirection={setPageDirection}
           />
         </Route>
         <Route path="/publish">
@@ -94,6 +109,8 @@ function App() {
             toggleSwitch={toggleSwitch}
             range={range}
             finalValue={finalValue}
+            token={token}
+            handleLoginPublish={handleLoginPublish}
           />
         </Route>
       </Switch>

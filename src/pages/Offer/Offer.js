@@ -1,11 +1,17 @@
 import "./Offer.scss";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const Offer = (props) => {
-  const { token, toggle, article, setArticle } = props;
+  const {
+    token,
+    toggle,
+    article,
+    setArticle,
+    pageDirection,
+    setPageDirection,
+  } = props;
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -46,6 +52,14 @@ const Offer = (props) => {
       }
     });
     return images;
+  };
+
+  /* Login befor payment */
+  const handleLoginPayment = () => {
+    const pagePayment = [...pageDirection];
+    pagePayment[1] = true;
+    setPageDirection(pagePayment);
+    toggle(0);
   };
 
   return isLoading ? (
@@ -98,8 +112,13 @@ const Offer = (props) => {
                 <div className="author">{article.owner.account.username}</div>
               )}
             </div>
-            <Link to={token ? "/payment" : "/offer/:id"}>
-              <button onClick={token ? null : () => toggle(0)}>Acheter</button>
+            <Link to={token ? "/payment" : `/offer/${id}`}>
+              <button
+                className="hover1"
+                onClick={token ? null : handleLoginPayment}
+              >
+                Acheter
+              </button>
             </Link>
           </div>
         </div>

@@ -7,12 +7,20 @@ import { useHistory } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const Login = (props) => {
-  const { isShowing, setIsShowing, isShowingIndex, setToken, setAvatar } =
-    props;
+  const {
+    isShowing,
+    setIsShowing,
+    isShowingIndex,
+    setToken,
+    setAvatar,
+    pageDirection,
+    setPageDirection,
+  } = props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hiddenPass, setHiddenPass] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   let history = useHistory();
 
@@ -39,6 +47,7 @@ const Login = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       const login = {};
       if (password && email) {
@@ -49,11 +58,11 @@ const Login = (props) => {
           // "http://localhost:5000/user/login",
           login
         );
-        const userLogin = response.data.account.username;
         const token = response.data.token;
         Cookies.set("tokenLogin", token, {
           expires: 7,
         });
+        Cookies.set("userName", response.data.account.username, { expires: 7 });
         if (
           response.data.account.avatar &&
           response.data.account.avatar.secure_url
@@ -63,10 +72,17 @@ const Login = (props) => {
           setAvatar(avatarImg);
         }
         setToken(token);
-        document.body.style.overflow = "auto";
-        history.goBack();
-
-        return alert(`Bienvenue ${userLogin}`);
+        setTimeout(() => {
+          document.body.style.overflow = "auto";
+          if (pageDirection[0]) {
+            history.push("/publish");
+          }
+          if (pageDirection[1]) {
+            history.push("/payment");
+          }
+          setLoading(false);
+          setPageDirection([false, false]);
+        }, 4000);
       }
     } catch (error) {
       console.log(error);
@@ -117,7 +133,11 @@ const Login = (props) => {
                 icon={hidden}
               />
             </label>
-            <button type="submit">Se connecter</button>
+            <div className="containerButton">
+              <button className={loading ? "onclic" : ""} type="submit">
+                Se connecter
+              </button>
+            </div>
 
             <p className="toggleLoginSignup" onClick={toggleLoginSignup}>
               Pas encore de compte ? Inscris-toi !

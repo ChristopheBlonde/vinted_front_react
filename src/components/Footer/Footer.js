@@ -8,14 +8,14 @@ const Footer = () => {
   return (
     <footer>
       <div className="container">
-        <nav className="nav">
+        <nav className="navFooter">
           <span>Made with</span>
-          <a href="https://create-react-app.dev/">
+          <a className="linkFooter " href="https://create-react-app.dev/">
             <img src={logoReact} alt="logo react" />
             React
           </a>
           <span>at</span>
-          <a href="https://www.lereacteur.io/">
+          <a className="linkFooter" href="https://www.lereacteur.io/">
             <img
               className="logoReacteur"
               src={logoReacteur}
@@ -24,7 +24,7 @@ const Footer = () => {
             Le Reacteur
           </a>
           <span>by</span>
-          <a href="https://github.com/ChristopheBlonde">
+          <a className="linkFooter" href="https://github.com/ChristopheBlonde">
             <img src={git} alt="logo github" />
             Chris
           </a>
