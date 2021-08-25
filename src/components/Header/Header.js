@@ -142,7 +142,7 @@ const Header = (props) => {
               onClick={handleDisconnected}
               className="buttonDisconnection hover2 hover1"
             >
-              Déconnection
+              Déconnexion
             </button>
           </div>
         ) : (

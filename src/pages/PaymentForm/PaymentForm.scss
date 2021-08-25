@@ -47,18 +47,13 @@ $color-vinted-green: #09b0ba;
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 0;
       border-bottom: none;
-      .test {
+      .cardElem {
         width: 100%;
       }
     }
     button {
-      background-color: $color-vinted-green;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      width: 90%;
+      width: 250px;
       padding: 10px;
       font-size: 20px;
     }

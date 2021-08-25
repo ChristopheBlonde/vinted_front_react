@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 
 function Publish(props) {
-  const { token } = props;
+  const { token, loading, setLoading } = props;
   const history = useHistory();
 
   const [files, setFiles] = useState([]);
@@ -18,7 +18,6 @@ function Publish(props) {
   const [lieu, setLieu] = useState("");
   const [price, setPrice] = useState("");
   const [checkBox, setCheckBox] = useState(false);
-  const [loading, setLoading] = useState([false, false]);
 
   /* Drop Zone */
   const [dropzone, setDropzone] = useState([]);
@@ -76,14 +75,9 @@ function Publish(props) {
     setCheckBox(check);
   };
 
-  const handleChangeLoading = () => {
-    const newStateLoding = [...loading];
-    newStateLoding[1] = true;
-    setLoading(newStateLoding);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading([true, false]);
     const formData = new FormData();
     dropzone.forEach((file, index) => {
       formData.append(`picture${index + 1}`, file[0]);
@@ -109,14 +103,14 @@ function Publish(props) {
           },
         }
       );
-      if (await response) {
+      if (response) {
         setLoading([false, true]);
       }
       const newArticle = response.data._id;
       setTimeout(() => {
         history.push(`/offer/${newArticle}`);
         setLoading([false, false]);
-      }, 6000);
+      }, 2000);
     } catch (error) {
       console.log(error);
     }
@@ -265,11 +259,21 @@ function Publish(props) {
           </div>
           <div className="submitButton">
             <button
-              onClick={handleChangeLoading}
-              className={loading[0] ? "onclic" : loading[1] ? "validate" : ""}
+              disabled={loading[0] || loading[1] ? true : false}
+              className={
+                loading[0]
+                  ? "onclic hoverSubmit"
+                  : loading[1]
+                  ? "validate hoverSubmit"
+                  : "hoverSubmit"
+              }
               type="submit"
             >
-              Ajouter
+              {!loading[1] && !loading[0]
+                ? "Ajouter"
+                : loading[0]
+                ? ""
+                : "Votre article a bien était ajouté"}
             </button>
           </div>
         </form>

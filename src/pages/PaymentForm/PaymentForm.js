@@ -6,12 +6,11 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 
 const Payment = (props) => {
-  const { article, token } = props;
+  const { article, token, loading, setLoading } = props;
   const stripe = useStripe();
   const elements = useElements();
   const [completed, setCompleted] = useState(false);
 
-  console.log(Cookies.get("userName"));
   /* Function for price format */
   const intlFormat = (num) => {
     return Intl.NumberFormat("fr-FR", {
@@ -40,12 +39,12 @@ const Payment = (props) => {
   /* Submit payment */
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading([true, false]);
     const cardElement = elements.getElement(CardElement);
 
     const stripeResponse = await stripe.createToken(cardElement, {
       price: priceArticle,
       article: article._id,
-      owner: article.owner._id,
     });
 
     const response = await axios.post(
@@ -63,7 +62,11 @@ const Payment = (props) => {
       }
     );
     if (response.data.status === "succeeded") {
-      setCompleted(true);
+      setLoading([false, true]);
+      setTimeout(() => {
+        setLoading([false, false]);
+        setCompleted(true);
+      }, 2000);
     }
   };
   return (
@@ -73,16 +76,16 @@ const Payment = (props) => {
           <div className="payment">
             <div className="resultPayment">
               <h3>
-                Merci pour vôtre achat <span>{Cookies.get("userName")}</span>.
+                Merci pour votre achat <span>{Cookies.get("userName")}</span>.
               </h3>
-              <p>Vous venez de faire l'acquisition de cette article.</p>
+              <p>Vous venez de faire l'acquisition de cet article.</p>
               <img src={imageArticle} alt="" />
               <p>
                 Ce produit est vendu par{" "}
                 <span>{article.owner.account.username}.</span>
               </p>
               <Link to="/">
-                <button>Retour à l'accueil</button>
+                <button className="btnHome hover1">Retour à l'accueil</button>
               </Link>
             </div>
           </div>
@@ -118,11 +121,23 @@ const Payment = (props) => {
               </p>
             </section>
             <section className="summary">
-              <div className="test">
+              <div className="cardElem">
                 <CardElement className="cardInput" />
               </div>
 
-              <button type="submit">Achetez</button>
+              <button
+                disabled={loading[0] || loading[1] ? true : false}
+                className={
+                  loading[0]
+                    ? "onclic "
+                    : loading[1]
+                    ? "validate hoverSubmit"
+                    : "hoverSubmit"
+                }
+                type="submit"
+              >
+                {loading[0] ? "" : loading[1] ? "Terminé" : "Acheter"}
+              </button>
             </section>
           </form>
         </div>

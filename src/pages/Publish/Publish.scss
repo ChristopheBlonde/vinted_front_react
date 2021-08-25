@@ -87,62 +87,8 @@ h1 {
     display: flex;
     justify-content: flex-end;
     button {
-      background-color: $color-vinted-green;
-      color: white;
       font-size: 20px;
       padding: 10px 15px;
-      border: 2px solid $color-vinted-green;
-      border-radius: 5px;
-      transition: all 0.25s ease;
-      &:hover {
-        color: $color-vinted-green;
-        background: white;
-        cursor: pointer;
-      }
-      &:active {
-        //letter-spacing: 2px;
-        letter-spacing: 2px;
-      }
-      &:after {
-        content: "";
-      }
-    }
-    .onclic {
-      width: 40px;
-      border-color: $color-greyLight;
-      border-radius: 50%;
-      border-width: 3px;
-      font-size: 0;
-      background-color: white;
-      border-left-color: $color-vinted-green;
-      animation: rotating 1s 0.25s linear infinite;
-
-      &:after {
-        content: "";
-      }
-      &:hover {
-        color: white;
-        border-left-color: white;
-        background: $color-vinted-green;
-      }
-    }
-    .validate {
-      font-size: 13px;
-      color: white;
-      background: $color-vinted-green;
-      &:after {
-        font-family: "FontAwesome";
-        content: "\f00c";
-      }
-    }
-
-    @keyframes rotating {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
     }
   }
 }
@@ -160,4 +106,16 @@ h1 {
 input[type="checkbox"] {
   transform: scale(1.5);
   -webkit-transform: scale(1.5);
+}
+
+/* Result payment */
+
+.resultPayment {
+  button {
+    background-color: $color-vinted-green;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
 }

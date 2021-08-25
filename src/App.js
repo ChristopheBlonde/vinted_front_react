@@ -35,6 +35,7 @@ function App() {
   const [token, setToken] = useState(Cookies.get("tokenLogin") || "");
   const [avatar, setAvatar] = useState(Cookies.get("avatar") || null);
   const [pageDirection, setPageDirection] = useState([false, false]);
+  const [loading, setLoading] = useState([false, false]);
 
   /* Modals showed */
   const newArr = [...isShowing];
@@ -96,11 +97,16 @@ function App() {
           />
         </Route>
         <Route path="/publish">
-          <Publish token={token} />
+          <Publish token={token} loading={loading} setLoading={setLoading} />
         </Route>
         <Route path="/payment">
           <Elements stripe={stripePromise}>
-            <PaymentForm article={article} token={token} />
+            <PaymentForm
+              article={article}
+              token={token}
+              loading={loading}
+              setLoading={setLoading}
+            />
           </Elements>
         </Route>
         <Route exact path="/">

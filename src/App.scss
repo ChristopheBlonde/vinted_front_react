@@ -4,6 +4,7 @@
 /* Variables */
 $font-gothic: "Gothic A1", sans-serif;
 $color-vinted-green: #09b0ba;
+$color-greyLight: #bababa;
 
 /* Global rules */
 
@@ -71,6 +72,62 @@ a {
   }
   &:hover {
     border-color: darken(lightcoral, 10%);
+  }
+}
+
+.hoverSubmit {
+  border: 2px solid $color-vinted-green;
+  border-radius: 5px;
+  background-color: $color-vinted-green;
+  color: white;
+  transition: all 0.25s ease;
+  &:hover {
+    color: $color-vinted-green;
+    background: white;
+    cursor: pointer;
+  }
+  &:active {
+    letter-spacing: 2px;
+  }
+  &:after {
+    content: "";
+  }
+}
+.onclic {
+  width: 40px;
+  height: 40px;
+  border-color: $color-greyLight;
+  border-radius: 50%;
+  border-width: 3px;
+  font-size: 0;
+  background-color: white;
+  border-left-color: $color-vinted-green;
+  animation: rotating 1s 0.25s linear infinite;
+
+  &:after {
+    content: "";
+  }
+  &:hover {
+    color: white;
+    border-left-color: white;
+    background: $color-vinted-green;
+  }
+}
+.validate {
+  font-size: 13px;
+  color: white;
+  background: $color-vinted-green;
+  &:after {
+    content: "";
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
