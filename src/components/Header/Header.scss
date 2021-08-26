@@ -61,7 +61,7 @@ header {
       border-radius: 5px;
     }
   }
-  nav {
+  .headerNavBar {
     display: flex;
     align-items: center;
   }
@@ -131,6 +131,9 @@ header {
     border: none;
     margin-right: 15px;
     outline: none;
+  }
+  .optionsList {
+    display: none;
   }
 }
 /* Checkbox toggle */
@@ -208,5 +211,80 @@ input:checked + .slider:before {
     background-color: $color-vinted-green;
     padding: 2px 5px;
     border-radius: 3px;
+  }
+}
+.hidden {
+  display: none;
+}
+/* Media queries */
+
+@media (max-width: 1180px) {
+  .headerNavBar {
+    flex-direction: column;
+    button,
+    .hover1 {
+      margin: 0;
+      margin-top: 5px;
+    }
+    .signOut {
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 880px) {
+  /* header */
+  .containSearch {
+    div.priceChois {
+      display: none;
+    }
+  }
+  .buttonDisconnection,
+  .buttonSell,
+  .buttonLogin {
+    display: none;
+  }
+  .headerNavBar {
+    flex-direction: row-reverse;
+    .optionsList {
+      display: flex;
+      color: $color-vinted-green;
+      font-size: 30px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  }
+}
+.closeOptions {
+  height: 100%;
+  width: 100%;
+  // position: absolute;
+  background-color: turquoise;
+}
+.optionsListModal {
+  width: 250px;
+  position: absolute;
+  border: solid 2px $color-vinted-green;
+  border-radius: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  background-color: white;
+  top: 80px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .rangeOptions {
+    width: 100%;
+    margin-top: 25px;
+  }
+  .btnNavOption-1 {
+    border-color: lightcoral;
+    color: white;
+    background-color: lightcoral;
+  }
+  span {
+    margin: 5px 0;
+    font-family: $font-gothic;
   }
 }

@@ -18,8 +18,17 @@ import {
   faTimes,
   faArrowUp,
   faArrowDown,
+  faListAlt,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch, faEye, faEyeSlash, faTimes, faArrowUp, faArrowDown);
+library.add(
+  faSearch,
+  faEye,
+  faEyeSlash,
+  faTimes,
+  faArrowUp,
+  faArrowDown,
+  faListAlt
+);
 
 const stripePromise = loadStripe(
   "pk_test_51JKm6FISp0ptytvdagplHqb1ydTQX1CR9pWcmdCC7giNOyyxqQUOAtDFPs2NVfM1fOmKErzpyUdiDvgc6MNLsX6S00MHl9Ituf"

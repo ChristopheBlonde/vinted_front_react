@@ -107,15 +107,3 @@ input[type="checkbox"] {
   transform: scale(1.5);
   -webkit-transform: scale(1.5);
 }
-
-/* Result payment */
-
-.resultPayment {
-  button {
-    background-color: $color-vinted-green;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-}

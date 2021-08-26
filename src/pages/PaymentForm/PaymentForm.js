@@ -124,20 +124,21 @@ const Payment = (props) => {
               <div className="cardElem">
                 <CardElement className="cardInput" />
               </div>
-
-              <button
-                disabled={loading[0] || loading[1] ? true : false}
-                className={
-                  loading[0]
-                    ? "onclic "
-                    : loading[1]
-                    ? "validate hoverSubmit"
-                    : "hoverSubmit"
-                }
-                type="submit"
-              >
-                {loading[0] ? "" : loading[1] ? "Terminé" : "Acheter"}
-              </button>
+              <div className="btnContent">
+                <button
+                  disabled={loading[0] || loading[1] ? true : false}
+                  className={
+                    loading[0]
+                      ? "onclic "
+                      : loading[1]
+                      ? "validate hoverSubmit"
+                      : "hoverSubmit"
+                  }
+                  type="submit"
+                >
+                  {loading[0] ? "" : loading[1] ? "Terminé" : "Acheter"}
+                </button>
+              </div>
             </section>
           </form>
         </div>

@@ -37,25 +37,26 @@ $color-vinted-green: #09b0ba;
         border-radius: 5px;
         margin-bottom: 30px;
       }
+      .cardElem {
+        width: 100%;
+      }
     }
     .infoPrice {
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
     }
-    .summary:last-child {
+    .btnContent {
       display: flex;
       flex-direction: column;
       align-items: center;
       border-bottom: none;
-      .cardElem {
-        width: 100%;
+
+      button {
+        width: 250px;
+        padding: 10px;
+        font-size: 20px;
       }
-    }
-    button {
-      width: 250px;
-      padding: 10px;
-      font-size: 20px;
     }
 
     /* Result of succeeded payment */
@@ -81,8 +82,16 @@ $color-vinted-green: #09b0ba;
         display: flex;
         justify-content: center;
         width: 100%;
+
         button {
-          width: 90%;
+          width: 60%;
+          background-color: $color-vinted-green;
+          color: white;
+          border-radius: 5px;
+          border: none;
+          cursor: pointer;
+          padding: 10px;
+          font-size: 20px;
         }
       }
     }
