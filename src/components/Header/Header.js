@@ -211,85 +211,86 @@ const Header = (props) => {
           className="optionsList"
           icon="list-alt"
         />
-
-        <div
-          ref={modalOptions}
-          className={optionsModal ? "optionsListModal" : "hidden"}
-        >
-          <button
-            className={token ? "btnNavOption-1 hover2 hover1" : "hidden"}
-            onClick={handleDisconnected}
-          >
-            Déconnexion
-          </button>
-          <button
-            className={token ? "hidden" : "btnNavOption-2 hover1"}
-            onClick={() => toggle(0)}
-          >
-            Se connecter
-          </button>
-          <button
-            className={token ? "hidden" : "btnNavOption-3 hover1"}
-            onClick={() => toggle(1)}
-          >
-            S'inscrire
-          </button>
-          <Link
-            className="btnNavOption-4"
-            to={token ? "/publish" : location.pathname}
+        <div className="containerModalOption">
+          <div
+            ref={modalOptions}
+            className={optionsModal ? "optionsListModal" : "hidden"}
           >
             <button
-              className="hover1"
-              onClick={token ? null : handleLoginPublish}
+              className={token ? "btnNavOption-1 hover2 hover1" : "hidden"}
+              onClick={handleDisconnected}
             >
-              Vends tes articles
+              Déconnexion
             </button>
-          </Link>
-          <span>Trier par prix :</span>
-          <label className="switch" htmlFor="switch">
-            <input
-              id="switch"
-              checked={toggleSwitch}
-              onChange={handleChangeToggleSwitch}
-              type="checkbox"
-            />
-            <div className="slider"></div>
-          </label>
-          <span>Prix entre :</span>
-          <div className="rangeOptions">
-            <Range
-              step={5}
-              min={0}
-              max={2000}
-              values={range}
-              onChange={(values) => setRange(values)}
-              onFinalChange={(values) => {
-                setFinalValue(values);
-              }}
-              renderTrack={({ props, children }) => {
-                return (
-                  <div
-                    className="track"
-                    {...props}
-                    style={{
-                      background: getTrackBackground({
-                        values: range,
-                        colors: ["#ccc", "#09b0ba", "#ccc"],
-                        min: 0,
-                        max: 2000,
-                      }),
-                    }}
-                  >
-                    {children}
+            <button
+              className={token ? "hidden" : "btnNavOption-2 hover1"}
+              onClick={() => toggle(0)}
+            >
+              Se connecter
+            </button>
+            <button
+              className={token ? "hidden" : "btnNavOption-3 hover1"}
+              onClick={() => toggle(1)}
+            >
+              S'inscrire
+            </button>
+            <Link
+              className="btnNavOption-4"
+              to={token ? "/publish" : location.pathname}
+            >
+              <button
+                className="hover1"
+                onClick={token ? null : handleLoginPublish}
+              >
+                Vends tes articles
+              </button>
+            </Link>
+            <span>Trier par prix :</span>
+            <label className="switch" htmlFor="switch">
+              <input
+                id="switch"
+                checked={toggleSwitch}
+                onChange={handleChangeToggleSwitch}
+                type="checkbox"
+              />
+              <div className="slider"></div>
+            </label>
+            <span>Prix entre :</span>
+            <div className="rangeOptions">
+              <Range
+                step={5}
+                min={0}
+                max={2000}
+                values={range}
+                onChange={(values) => setRange(values)}
+                onFinalChange={(values) => {
+                  setFinalValue(values);
+                }}
+                renderTrack={({ props, children }) => {
+                  return (
+                    <div
+                      className="track"
+                      {...props}
+                      style={{
+                        background: getTrackBackground({
+                          values: range,
+                          colors: ["#ccc", "#09b0ba", "#ccc"],
+                          min: 0,
+                          max: 2000,
+                        }),
+                      }}
+                    >
+                      {children}
+                    </div>
+                  );
+                }}
+                renderThumb={({ props }) => (
+                  <div className="trackThumb" {...props}>
+                    <div className="price">{range[props.key] + "€"}</div>
                   </div>
-                );
-              }}
-              renderThumb={({ props }) => (
-                <div className="trackThumb" {...props}>
-                  <div className="price">{range[props.key] + "€"}</div>
-                </div>
-              )}
-            />
+                )}
+              />
+            </div>
           </div>
         </div>
       </nav>
